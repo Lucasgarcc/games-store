@@ -1,17 +1,16 @@
 import { sql } from "./db.js";
 
-// sql`DROP TABLE IF EXISTS form;`.then(() => {
-//   console.log("Tabela apagada!");
-// });
-
-sql` CREATE TABLE products ( 
-  id TEXT PRIMARY KEY, 
-  name TEXT, 
-  value DECIMAL(10,2), 
-  image TEXT
-);
-`.then(() => {
-  console.log('Tabela criada!');
-}).catch(err => {
-  console.error('Erro ao criar a tabela:', err);
-});
+sql`
+  CREATE TABLE IF NOT EXISTS products ( 
+    id UUID PRIMARY KEY, 
+    name TEXT NOT NULL, 
+    value DECIMAL(10, 2) NOT NULL, 
+    image TEXT
+  );
+`
+  .then(() => {
+    console.log('Tabela "products" criada com sucesso!');
+  })
+  .catch(err => {
+    console.error('Erro ao criar a tabela "products":', err);
+  });
