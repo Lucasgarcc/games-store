@@ -41,7 +41,7 @@
   </header>
   <main>
     <section class="home section">
-      <img class="home-background container" src="./assets/img/backgrounds/bg-nitendo.svg" alt="Imagem de fundo controle nitendo">
+      <img class="home-background section" src="./assets/img/backgrounds/bg-nitendo.svg" alt="Imagem de fundo controle nitendo">
       <div class="home-container container grid">
         <div class="home-information">
           <h1 class="home-title">Ei, Gamers <br>
@@ -89,22 +89,48 @@
     </section>
     <section class="section">
         <div id="scrollable-card" class="card-container container">
-          <div class="card-content" id="scrollable-card">
-            <div class="card-item">Item 1</div> 
-            <div class="card-item">Item 2</div> 
-            <div class="card-item">Item 3</div> 
-            <div class="card-item">Item 4</div> 
-            <div class="card-item">Item 5</div> 
-          </div> 
-          <button id="scroll-left">
-            <i class="uil uil-angle-right-b"></i>
-          </button>
-          <button id="scroll-right">
-            <i class="uil uil-angle-left-b"></i>
-          </button>
+          <div id="carrusel" class="slider">
+            <div id="carrusel-slides" class="slides">               
+              <div class="slide">
+                <img class="consle-playstaion"src="./assets/img/images/ps1.png" alt="console playstation um">
+                <div class="slide-title">
+                  <span class="console-title">Sony</span>
+                </div>
+              </div>
+              <div class="slide" >
+                <img class="console-sega-16" src="./assets/img/images/sega-16-bit.png" alt="console playstation um" data-imagem>
+                <div class="slide-title">
+                  <span class="console-title">Sega</span>
+                </div>
+              </div>
+              <div class="slide">
+                <img class="console-nitendo" src="./assets/img/images/super-nitendo-cd.png" alt="console playstation um" data-imagem>
+                <div class="slide-title">
+                  <span class="console-title">Nitendo</span>
+                </div>
+              </div>
+              <div class="slide">4</div>
+              <div class="slide">5</div>
+              <div class="slide">6</div>
+            </div>
+            <button class="btn-prev">
+            <button class="btn-next">
+          </div>
         </div>
 
+        
+
       </div>        
+    </section>
+    <section class="section">
+      <div class="krash-container section grid">
+        <div class="krash-img">
+          <img src="./assets/img/images/krash.svg" alt="Personagem Luigi">
+        </div>
+        <img class="krash-background section grid" src="./assets/img/backgrounds/bg-sony.svg" alt="Imagem de fundo controle nitendo">
+      </div>
+     
+  
     </section>
   </main>
   <footer class="footer" role="contentinfo" aria-label="Footer">
@@ -145,6 +171,6 @@
     </div>
   </footer>  
 
-  <script src="./js/app.js"></script>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>
