@@ -62,8 +62,8 @@
 /* Font size for large devices */
 @media screen and (max-width: 968px) {
     :root {
-        --big-font-size: 3rem;
-        --h1-font-size: 2.25rem;
+        --big-font-size: 2.5rem;
+        --h1-font-size: 2rem;
         --h2-font-size: 1.5rem;
         --h3-font-size: 1.25rem;
         --normal-font-size: 1rem;
@@ -149,7 +149,7 @@ button {
 /*==================== CSS CLASSES ====================*/
 .section {
   padding: 2rem 0 4rem;
-  min-height: 70vh;
+  min-height: 100vh;
 }
 
 .section-title {
@@ -163,7 +163,6 @@ button {
   padding: 2rem;
   font-family: var(--title-font);
   font-weight: var(--title-font);
-  text-align: center;
 }
 
 /*==================== LAYOUT ====================*/
@@ -195,11 +194,18 @@ button {
 }
 
 .menu {
+  padding: 5rem 0;
   max-width: 968px;
   height: var(--header-height);
+  font-size: var(--h3-font-size);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.nav-menu-icon {
+  display: none;
 }
 
 .nav-logo, .nav-toggle {
@@ -231,34 +237,38 @@ button {
 }
 
 @media (width <= 767px) { /* max-width:  */
-  .menu-content {
-    padding: 2rem 1.5rem 4rem;
-    width: 50%;
-    flex-direction: column;
-    height: 50%;
-    position: fixed;
-    right: 0;
-    top: 2rem;
-    background-color: var(--body-cor);
-    box-shadow: 0 -1px 4px rgba(0,0,0,.15);
-    border-radius: 1.5rem 1.5rem 0 0;
-    transition:  .3s;
-  }
 
 }
 
-.menu-content::before {
-  content: '';
-  position: relative;
-  inset:  1rem  3rem 40rem;
-  display: block;
-  width: 38px;
-  height: 4px;
-  border-radius: 1.5px;
-  background-color: var(--primeira-cor-seg-detale);
+/* adiciona o detalhe do icone ativo*/
+.menu-content li {
+  position: relative; /* Necessário para posicionar o ::before */
 }
-
+  
+.menu-content li a::before {
+  content: "";
+  position: absolute;
+  width: 70%; /* Largura inicial da linha */
+  height: 3.5px; /* Altura da linha */
+  bottom: -10px; /* Ajuste conforme necessário */
+  left: 1%;
+  border-radius: .5rem;
+  background-color: var(--primeira-cor-seg-detale); /* Cor da linha */
+  transform: scaleX(0); /* Inicialmente escondida */
+  transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+  
+.menu-content li:hover a::before {
+  transform: scaleX(1); /* Mostra a linha ao passar o mouse */
+}
+  
+.menu-content li.active a::before {
+  transform: scaleX(1); /* Linha permanece visível ao clicar */
+  background-color: var(--primeira-cor-seg-detale); /* Cor alternativa ao clicar */
+}
+  
 .menu-link{
+  font-size: var(--h3-font-size);
   color: var(--texto-cor-light);
   cursor: pointer;
 }
@@ -309,16 +319,20 @@ button {
 
 
 .home-content-img{
+  margin-top: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   row-gap: 1rem;
 }
 
+.luigi-img {
+  width: 106%;
+}
+
 .home-img {
   animation: floating 4s ease-in-out infinite;
 }
-
 
 .home-title {
   font-family: var(--title-font);
@@ -329,7 +343,8 @@ button {
 }
 
 .home-subtitle {
-  margin-bottom: var(--mb-0-75);
+  margin-top: 5rem;
+  margin-bottom: var(--mb-2);
   font-size: var(--h1-font-size);
   font-family: var(--title-font);
   font-weight: var(--font-medium);
@@ -357,8 +372,6 @@ button {
 .home-scroll-button:hover {
   transform: translateY(.25rem);
 }
-
-
 
 .home-scroll-name {
   margin-right: var(--mb-0-25);
@@ -434,11 +447,16 @@ button {
   }
 }
 
-.about-background {
-  width: 100%;
-  height: 20%;
+.about {
+  padding-top: 20rem ;
   position: relative;
-  inset:  40rem 0 0 15rem ;
+}
+
+.about-background {
+  width: 60%;
+  height: 20%;
+  position: absolute;
+  
   z-index: -1;
 }
 
@@ -447,6 +465,10 @@ button {
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 2.5rem;
+}
+
+.about-img-sonic {
+  width: 100%;
 }
 
 .about-content-sonic {
@@ -461,16 +483,12 @@ button {
   content: '';
   position: absolute;
   inset: 1rem 0rem 0;
-  display: block;
   width: 100%;
   height: 600px;
   background: linear-gradient(to right, rgb(255, 247, 247), #d1cfcf);
   border-radius: 1rem 0 0 1rem;
   z-index: -1;
 }
-
-
-
 
 .sonic-det {
   font-size: 2.5rem;
@@ -484,14 +502,37 @@ button {
 }
 .about-description {
   padding: 3.5rem 2rem 2rem;
-  width: 80%;
   font-size: 1.1rem;
   font-family: var(--body-font);
   color: var(--text-cor);
   text-align: justify;
 }
 
-/*==================== Cards ====================*/
+/*==================== Cards Produtcs ====================*/
+
+.products {
+  padding-top: 15rem;
+}
+
+.products-title {
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+  font-size: var(--h1-font-size);
+  font-family: var(--title-font);
+  font-weight: var(--font-medium);
+  background: linear-gradient(50deg,#a81515, #e43e0f); /* Gradiente aplicado */
+   /* Compatibilidade com navegadores sem prefixo */
+   background-clip: text;
+  
+   /* Compatibilidade com navegadores baseados em WebKit */
+   -webkit-background-clip: text;
+ 
+   /* Torna o texto transparente para exibir o gradiente */
+   -webkit-text-fill-color: transparent; /* Torna o texto transparente, revelando o gradiente */
+  text-align: center; /* Alinha o texto ao centro */
+  text-transform: uppercase;
+  text-align: right;
+}
 
 /* Container principal do carrossel */
 .slider {
@@ -517,7 +558,6 @@ button {
   scrollbar-width: none; /* Ocultar barra no Firefox */
   z-index: 1;
 }
-
 
 .slide-title {
   position: absolute;
@@ -551,7 +591,6 @@ button {
  /* Muda a cor do título ao passar o mouse */
   color: #e43e0f;
 }
-
 
 
 .slides::-webkit-scrollbar {
@@ -660,101 +699,21 @@ button {
 .card-container {
   position: relative;
 }
+
+
 .card-container::before {
   content: '';
   position: absolute;
-  inset: -2rem 13rem 0;
+  inset: -4rem 13rem 0;
   display: block;
   width: 58.6vw;
-  height: 450px;
+  height:750px;
   background: linear-gradient(to right, rgba(49, 48, 48, 100), #020101);
   border-radius: 1rem 0 0 1rem;
   z-index: -1;
 }
 
-/* Responsividade */
-@media (max-width: 1200px) {
-  .slides .slide {
-    width: 250px; /* Reduz tamanho dos slides */
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-}
 
-@media (max-width: 1024px) {
-  .slider .btn-next {
-    left: 75%;
-  }
-  .slides {
-    gap: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .slider {
-    min-width: calc(10px * 2 + 20px * 2); /* Até 2 slides visíveis */
-  }
-
-  
-
-  .slides .slide {
-    width: 200px; /* Tamanho menor para slides */
-    height: 200px;
-    margin-right: 8px;
-    margin-left: 8px;
-  }
-
-  .slider .btn-prev,
-  .slider .btn-next {
-    width: 40px; /* Botões menores */
-    height: 40px;
-  }
-
-  .slider .btn-prev {
-    top: 50%;
-    left: 40px;
-  }
-
-  .slider .btn-next {
-
-    top: 48%;
-    left: 65%;
-}
-
-}
-
-@media (max-width: 480px) {
-  .slider {
-    max-width: 100%; /* Preenche a largura da tela */
-  }
-
-  .slides {
-    gap: 1.rem;
-  }
-  .slides .slide {
-    width: 140px;
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-
-  .slider .btn-prev,
-  .slider .btn-next {
-    width: 35px;
-    height: 35px;
-  }
-
-  .slider .btn-next {
-    top: 48%;
-    left: 65%;
-  }
-
-  .console-nitendo,
-  .consle-playstaion,
-  .console-sega-16
-  {
-    width: 160px;
-  }
-}
 
 
 /*==================== Krash ====================*/
@@ -1086,10 +1045,7 @@ input.error {
   .contianer {
     margin: auto var(--mb1)auto var(--mb1);
   }
-  .nav-menu {
-    background-color: var(--primeira-cor);
-    padding: 2rem .25rem 4rem; 
-  }
+
   .nav-list {
     column-gap: 0;
   }
@@ -1123,24 +1079,6 @@ input.error {
 }
 
 
-/* For medium devices 
-@media screen and (min-width: 568px) {
-
-
-}
-*/
-
-@media screen and (max-width: 768px) {
-  .menu-content {
-    gap: 3rem;
-    align-self: flex-start;
-  }
-
-  .menu-item {
-    width: 50%;
-  }
-
-}
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
@@ -1157,4 +1095,511 @@ input.error {
     column-gap: 5rem;
   }
 
+}
+
+/* Responsividade */
+@media (max-width: 1768px) {
+  .about {
+    padding-top: 30rem ;
+  }
+}
+@media (max-width: 1400px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2.5rem;
+  }
+  .about-content-sonic {
+    padding-left: 5rem;
+    margin:  0 auto;
+    width: 70%;
+  }
+  .about-content-sonic::before {
+    position: absolute;
+    inset: 1rem 2rem 0;
+    width: 116.7%;
+    height: 100%;
+  }
+
+  .slides .slide {
+    width: 250px; /* Reduz tamanho dos slides */
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .slide-title {
+    width: 90px;
+    height: 50px;
+    top: 1%;
+    right: 60%;
+  }
+
+  .console-title {
+    font-size: var(--h2-font-size);
+  }
+
+  .console-title::after {
+    top: 20%;
+    left: -20%;
+    display: block;
+    width: 150px;
+    height: 60px;
+  }
+
+  .card-container::before {
+    position: absolute;
+    inset: 1rem 11rem 0;
+    width: 100.7%;
+    height: 116%;
+  
+  }
+
+  .krash-section {
+    padding-top: 10rem ;
+  }
+
+  .krash-img {
+    width: 90%;
+  }
+  .krash-section {
+    padding-top: 10rem;
+  }
+  .krash-background {
+    width: 100%;
+    position: absolute;
+  }
+  .krash-img {
+    inset: -5rem 5rem 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .krash {
+    width: 120%;
+    position: absolute;
+    inset: 0;
+  }
+
+}
+
+@media (max-width: 1278px) {
+  .about-content-sonic::before {
+    inset: 1rem 2rem 0;
+    width: 112.7%;
+    height: 100%;
+  }
+  .slider {
+    min-width: calc(889px);
+  }
+  .card-container::before {
+    position: absolute;
+    inset: 1rem 11rem 0;
+    width: 93.7%;
+    height: 116%;
+  }
+ 
+}
+
+@media (max-width: 1024px) and (min-width: 998px) {
+  .slider .btn-next {
+    left: 75%;
+  }
+  .slides {
+    gap: 1.3rem;
+  }
+  .console-title {
+    font-size: var(--h1-font-size);
+  }
+
+  .slide-title {
+    width: 90px;
+    height: 50px;
+    top: 1%;
+    right: 66%;
+  }
+  .console-title::after {
+    top: 40%;
+    left: 0%;
+    display: block;
+    width: 150px;
+    height: 60px;
+ 
+  }
+  .card-container::before {
+     inset: 0rem 6rem 0; 
+      width: 80%; 
+  }
+
+}
+
+@media (max-width: 968px) {
+  .slider {
+    min-width: calc(10px * 2 + 20px * 2); /* Até 2 slides visíveis */
+  }
+
+  .slides .slide {
+    width: 180px; /* Tamanho menor para slides */
+    height: 200px;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+
+  .slider .btn-prev,
+  .slider .btn-next {
+    width: 40px; /* Botões menores */
+    height: 40px;
+  }
+
+  .slider .btn-prev {
+    top: 50%;
+    left: 40px;
+  }
+
+  .slider .btn-next {
+    top: 48%;
+    left: 65%;
+  }
+
+  .console-nitendo,
+  .consle-playstaion,
+  .console-sega-16
+  {
+    width: 160px;
+  }
+
+  .console-title {
+    font-size: var(--h2-font-size);
+  }
+
+  .slide-title {
+    width: 90px;
+    height: 50px;
+    top: 1%;
+    right: 57%;
+  }
+  .console-title::after {
+    top: 40%;
+    left: 0%;
+    display: block;
+    width: 100px;
+    height: 40px;
+ 
+  }
+  .card-container::before {
+    inset: -4rem 15rem 0;
+    width: 80%;
+    height: 150%;
+
+  }
+}
+@media screen and (max-width: 898px) {
+  .menu {
+    padding-top: 3rem;
+  }
+  .menu-content {
+    gap: 3rem;
+    align-self: flex-start;
+  }
+
+  .menu-item {
+    width: 50%;
+  }
+  .nav {
+    padding-bottom: 3rem;
+    gap: 0;
+  }
+  .nav-menu-icon {
+    display: block;
+    left: 9rem;
+  }
+
+  .menu-content {
+    display: none; /* Escondido por padrão */
+    transition: 0.4s ease;
+  }
+  .nav-logo {
+    padding: 2rem;
+  }
+
+  .menu-content.show-menu{
+    padding: 1rem 1.5rem 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50%;
+    position: fixed;
+    right: 0;
+    top: 0rem;
+    background-color: #1E1D1D;
+    box-shadow: 0 -1px 4px rgba(51, 51, 51, 0.15);
+    border-radius: 1.5rem 0 1.5rem 0;
+    transition:  .3s;
+    z-index: 5;
+  }
+
+  .menu-item {
+    width: 60%;
+  }
+
+  /* Ícone do menu (hambúrguer) */
+  .nav-menu-icon {
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    height: 25px;
+    z-index: var(--z-fixed);
+  }
+
+  /* Linhas do ícone */
+  .nav-menu-icon span {
+    display: block;
+    height: 3px;
+    background-color: var(--container-cor); /* Ou defina a cor que deseja */
+    margin: 5px 0;
+    border-radius: 4rem;
+    transition: 0.4s;
+    z-index: var(--z-fixed);
+  }
+
+  .bar1 {
+    width: 24px;;
+  }
+
+  .nav-menu-icon .bar2 {
+    background-color: var(--primeira-cor-seg-detale);
+  }
+  
+
+  .bar3 {
+    position: relative;
+    left: 23%;
+    width: 24px;
+  }
+
+  /* Quando o ícone está ativo (hambúrguer vira X) */
+  .nav-menu-icon.active .bar1 {
+    transform: translateY(-4px) rotate(320deg);
+    background-color: var(--primeira-cor-seg-detale);
+    z-index: var(--z-fixed);
+  }
+
+  .nav-menu-icon.active .bar2 {
+    opacity: 0; /* Esconde a barra do meio */
+    z-index: var(--z-fixed);
+  }
+
+  .nav-menu-icon.active .bar3 {
+    transform: translateY(-20px) translateX(-6px) rotate(41deg);
+  }
+
+  .nav-open,.nav-toggle  {
+    color: var(--text-cor);
+  }
+
+  /* adiciona o detalhe do icone ativo*/
+  .menu-content li.active::before {
+    content: '';
+    position: relative;
+    inset: .7rem -2.5rem; /* Ajuste esses valores conforme necessário */
+    display: block;
+    width: 20px;
+    height: 4px;
+    border-radius: 1.5px;
+    background-color: var(--primeira-cor);
+  }
+
+ 
+  
+  .menu-content li a::before {
+    content: "";
+    position: absolute;
+    width: 10%; /* Largura inicial da linha */
+    height: 3.5px; /* Altura da linha */
+    bottom: -2px; /* Ajuste conforme necessário */
+    left: -15%;
+    border-radius: .5rem;
+    background-color: var(--primeira-cor-seg-detale); /* Cor da linha */
+    transform: scaleX(0); /* Inicialmente escondida */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+  }
+  
+}
+
+@media  screen and (max-width: 590px) {
+  .nav-menu-icon {
+    left: 4rem;
+  }
+
+  .nav-menu-icon {
+    display: block;
+    left: 9rem;
+  }
+  #nav-menu.show-menu {
+    width: 70%;
+  }
+
+  .products-title {
+    max-width:100%;
+    word-wrap: break-word;
+    font-size: var(--h2-font-size);
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    padding: 2rem 0;
+  }
+  .nav-logo {
+    padding: 2rem 0 0;
+  }
+
+  .menu-content.show-menu {
+    height: 90%;
+  }
+
+  .nav-menu-icon {
+    padding: 5rem 0 ;
+    display: block;
+    left: 9rem;
+  }
+
+  .menu-content li.active::before {
+
+    inset: .6rem -3.2rem;
+    display: block;
+    width: 26px;
+    height: 4px;
+;
+  }
+
+  .menu-content li a::before {
+    content: "";
+    position: absolute;
+    width: 27%;
+    height: 3.5px;
+    bottom: 25px;
+    left: -35%;
+  }
+
+  #nav-menu.show-menu {
+    padding: 4rem ;
+    width: 75%;
+  }
+  .section {
+    padding: 2rem 0 4rem;
+    min-height: 74vh;
+  }
+  .about {
+    padding-top: 60rem;
+  }
+
+  .about-background {
+    width: 100%;
+    height: 10%;
+    position: none;
+    z-index: -1;
+  }
+
+  .about-content-sonic {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+ 
+  }
+
+  .about-content-sonic::before {
+    inset: 1rem 0rem 0;
+    width: 100%;
+
+  }
+
+  .about-description {
+    padding: 0;
+    font-size: 1.1rem;
+    font-family: var(--body-font);
+    color: var(--text-cor);
+    text-align: justify;
+  }
+
+  .slider {
+    max-width: 100%; /* Preenche a largura da tela */
+  }
+
+  .slides {
+    gap: 1.rem;
+  }
+  .slides .slide {
+    width: 160px;
+    height: 250px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .slider .btn-prev,
+  .slider .btn-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .slider .btn-prev {
+    top: 58%;
+    left: 40px;
+  }
+  .slider .btn-next {
+    top: 58%;
+    left: 65%;
+  }
+
+  .console-nitendo,
+  .consle-playstaion,
+  .console-sega-16
+  {
+    width: 160px;
+  }
+
+  .slide-title {
+    width: 90px;
+    height: 50px;
+    top: 1%;
+    right: 45%;
+  }
+
+  .console-title {
+    font-size: var(--h2-font-size);
+  }
+  .console-title::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    display: block;
+    width: 100px;
+    height: 40px;
+ 
+  }
+  .card-container::before {
+    inset: -4rem 5.5rem 0;
+    width: 80%;
+    height: 150%;
+
+  }
+  .krash-section {
+    padding-top: 10rem;
+  }
+  .krash-background {
+    width: 100%;
+    position: absolute;
+  }
+  .krash-img {
+    inset: -5rem 5rem 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .krash {
+    width: 180%;
+    position: absolute;
+    inset: 0 0 0 -4rem
+  }
 }

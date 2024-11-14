@@ -95,3 +95,72 @@ carSld.addEventListener('wheel', function(event) {
   // Impede o comportamento de rolagem vertical padrão (scroll na página)
   event.preventDefault();
 }, { passive: false });
+
+
+
+/*==================== MENU SHOW Y HIDDEN ====================*/
+const navMenu = document.querySelector('#nav-menu'),
+  navToggle = document.querySelector('#nav-toggle'),
+  navClose = document.querySelector('#nav-close');
+
+/*===== MENU SHOW =====*/
+/* Validate if constant exists */
+function toggleMenu() {
+  // Alterna a classe de mostrar o menu
+  navMenu.classList.toggle('show-menu');
+
+  // Também alterna a classe para mudar o ícone do botão
+  navToggle.classList.toggle('active');
+}
+
+// Exibe o menu ao clicar no ícone de abrir
+if (navToggle) {
+  navToggle.addEventListener('click', toggleMenu);
+}
+
+// Esconde o menu ao clicar no ícone de fechar
+if (navClose) {
+  navClose.addEventListener('click', toggleMenu);
+}
+
+
+/*==================== REMOVE MENU MOBILE ====================*/
+
+const navLink = document.querySelectorAll('.nav-link');
+
+function linkAction() {
+  const menu = document.querySelector('#nav-menu')
+  toggleMenu(navMenu);
+}
+navLink.forEach(item => item.addEventListener('click', linkAction));
+
+
+/*==================== ADD ICONE LINKS DO MENU ====================*/
+
+const menuContent = document.querySelectorAll('.menu-content'); // Seleciona todos os menu-content
+
+
+menuContent.forEach(menu =>  {
+  const menuItem = menu.querySelectorAll('li'); 
+
+  menuItem.forEach(item => {
+    item.addEventListener('click', () => {
+
+      // Remove active se tiver active
+      menuItem.forEach(link => link.classList.remove('active'));
+    
+      // Adiciona active a cada link for clicado
+      item.classList.add('active')
+
+    });
+  });
+
+  
+});
+
+
+
+
+
+
+
