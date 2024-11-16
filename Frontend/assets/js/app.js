@@ -157,54 +157,30 @@ menuContent.forEach(menu =>  {
 });
 
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-const sectionsScroll = document.querySelectorAll('[data-anima-scroll]');
-const viewWindow = window.innerHeight * 0.5; // Corrigido de 'veiwWindow' para 'viewWindow'
-const active = 'active';
 
-function animaScroll() {
+const sectionsScroll = document.querySelectorAll('[data-anima="scroll"]');
+const windowView = window.innerHeight * 0.5;
+const active  = 'active';
+
+// variavel pega valor do window html atraves da prorpriedade
+// innerHeight multiplicado por 60% da tela.
+
+function animaScroll () {
   sectionsScroll.forEach((section) => {
-    const sectionTop = section.getBoundingClientRect().top; // Corrigido de 'getBoundingClientReact' para 'getBoundingClientRect'
-    const isSectionVisible = sectionTop - (window.innerHeight - viewWindow) <= 0; // Corrigido de 'isSectinVisible' para 'isSectionVisible'
+    const sectionTop = section.getBoundingClientRect().top;
+    const isSectionVIsible = sectionTop - windowView <= 0;
+  // concatena a variavel -[section] a o metodo que pega,
 
-    if (isSectionVisible) {
-      section.classList.add(active);
-    } else {
+    if (isSectionVIsible) {
+      // varifica se valor do scroll da pagina for maior que zero.
+        section.classList.add(active);
+    } else  {
       section.classList.remove(active);
     }
   });
 }
 
-// Adiciona o evento 'scroll' para chamar a animação quando o usuário rolar
-window.addEventListener('scroll', animaScroll);
-
-// Chamada inicial para verificar a visibilidade ao carregar a página
-animaScroll(); 
-
-/*==================== SCROLL SECTIONS ====================*/
-// Seleciona todas as seções que possuem um ID
-const sections = document.querySelectorAll('section[id]');
-
-function handleVisibility() {
-  const windowHeight = window.innerHeight;
-
-  sections.forEach((section) => {
-    const sectionTop = section.getBoundingClientRect().top;
-    const sectionBottom = section.getBoundingClientRect().bottom;
-
-    // Se a seção estiver visível no viewport
-    if (sectionTop < windowHeight && sectionBottom > 0) {
-      section.classList.add('visible'); // Adiciona a classe "visible" quando a seção está visível
-    } else {
-      section.classList.remove('visible'); // Remove a classe "visible" quando a seção não está visível
-    }
-  });
+if (sectionsScroll.length) {
+  animaScroll();
+  window.addEventListener('scroll', animaScroll);
 }
-
-// Adiciona o evento 'scroll' para monitorar a rolagem e chamar a função
-window.addEventListener('scroll', handleVisibility);
-
-// Chama a função inicialmente para verificar as seções visíveis ao carregar
-handleVisibility(); 
-
-

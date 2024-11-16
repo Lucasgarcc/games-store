@@ -147,109 +147,10 @@ button {
 }
 
 
-/* ===================== ESTILOS INICIAIS ===================== */
-section {
-  opacity: 0; /* Começa invisível */
-  transform: translate3d(0, 50px, 0); /* Começa deslocado para baixo */
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Transições suaves */
-}
-
-/* ===================== SEÇÃO VISIBLE (quando entra na tela) ===================== */
-section.visible {
-  opacity: 1; /* Seção visível */
-  transform: translate3d(0, 0, 0); /* Retorna à posição original */
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Transição suave */
-}
-
-/* ===================== ANIMAÇÃO DE ENTRADA ===================== */
-@keyframes show-left {
-  from {
-    opacity: 0;
-    transform: translate3d(-20px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* ===================== ANIMAÇÃO DE SAÍDA (desaparecendo suavemente) ===================== */
-@keyframes hide-left {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(40px, 0, 0); /* Move para a direita enquanto desaparece */
-  }
-}
-
-/* ===================== DIREÇÃO "left" ===================== */
-
-[data-anima-scroll][data-anima="left"] {
-  transform: translate3d(30px, 0, 0); /* Começa um pouco à direita */
-  opacity: 0; /* Inicialmente invisível */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave para a opacidade e transformação */
-}
-
-/* ===================== ATIVAÇÃO COM ANIMAÇÃO PARA SEÇÃO "left" ===================== */
-
-[data-anima-scroll].active[data-anima="left"] {
-  animation: show-left 0.5s ease-out forwards; /* Animação de entrada */
-}
-
-/* ===================== DESATIVAÇÃO SUAVE ===================== */
-[data-anima-scroll]:not(.active)[data-anima="left"] {
-  animation: hide-left 0.5s ease-out forwards; /* Animação de saída suave */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave quando removido da tela */
-}
-
 
 
 /* ===================== ANIMAÇÃO DE ENTRADA ===================== */
-@keyframes show-left {
-  from {
-    opacity: 0;
-    transform: translate3d(-20px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
 
-/* ===================== ANIMAÇÃO DE SAÍDA (desaparecendo suavemente) ===================== */
-@keyframes hide-left {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(40px, 0, 0); /* Move para a direita enquanto desaparece */
-  }
-}
-
-/* ===================== DIREÇÃO "left" ===================== */
-
-[data-anima-scroll][data-anima="left"] {
-  transform: translate3d(30px, 0, 0); /* Começa um pouco à direita */
-  opacity: 0; /* Inicialmente invisível */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave para a opacidade e transformação */
-}
-
-/* ===================== ATIVAÇÃO COM ANIMAÇÃO PARA SEÇÃO "left" ===================== */
-
-[data-anima-scroll].active[data-anima="left"] {
-  animation: show-left 0.5s ease-out forwards; /* Animação de entrada */
-}
-
-/* ===================== DESATIVAÇÃO SUAVE ===================== */
-[data-anima-scroll]:not(.active)[data-anima="left"] {
-  animation: hide-left 0.5s ease-out forwards; /* Animação de saída suave */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição suave quando removido da tela */
-}
 
 
 
@@ -586,12 +487,6 @@ section.visible {
 }
 
 /* Estado inicial */
-.js [data-anima-scroll] {
-  opacity: 0;
-  transform: translate3d(0, 0, 0); /* Posição inicial genérica */
-  transition: 0.5s ease-out;
-}
-
 .js [data-anima="scroll"]  {
   opacity: 0;
   transform:  translate3d(-30px, 0, 0);
@@ -603,27 +498,6 @@ section.visible {
   transform:  translate3d(0, 0, 0);
   transition: .5s;
 }
-
-
-/* Direção específica: 'down' */
-.js [data-anima-scroll][data-anima="down"] {
-  transform: translate3d(0, -30px, 0); /* Apenas 'down' começa deslocado para cima */
-}
-
-/* Direção específica: 'right' */
-.js [data-anima-scroll][data-anima="right"] {
-  transform: translate3d(-30px, 0, 0); /* Apenas 'right' começa deslocado para esquerda */
-}
-
-/* Ativação com animação */
-.js [data-anima-scroll].active[data-anima="down"] {
-  animation: show-down 0.5s ease-out forwards;
-}
-
-.js [data-anima-scroll].active[data-anima="right"] {
-  animation: show-right 0.5s ease-out forwards;
-}
-
 
 
 /*========== SCROLL BAR ==========*/
@@ -663,16 +537,12 @@ section.visible {
   background-size: 51%; /* Ajuste o tamanho da imagem conforme necessário */
 }
 
-
-
-
 .sonic {
   width:68%;
   position: relative;
   left: 20%;
   animation: floating-reverse 4s ease-in-out infinite;
 }
-
 
 .about-background {
   width: 71%;
@@ -681,7 +551,6 @@ section.visible {
   inset: 54rem 0 0 0;
   z-index: -1;
 }
-
 
 .about-container {
   grid-template-columns: 1fr 1fr;
@@ -769,7 +638,6 @@ section.visible {
   padding-right: 15px;
 }
 
-
 /* Área dos slides */
 .slides {
   width: 100%;
@@ -816,7 +684,6 @@ section.visible {
  /* Muda a cor do título ao passar o mouse */
   color: #e43e0f;
 }
-
 
 .slides::-webkit-scrollbar {
   display: none; /* Ocultar barra de rolagem no Chrome, Safari e Edge */
@@ -923,7 +790,6 @@ section.visible {
   transition: transform 0.5s ease, filter 0.5s ease; /* Animação suave */ filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.5));
 }
 
-
 .console-nitendo:hover,
 .consle-playstaion:hover,
 .console-sega-16:hover{ 
@@ -956,7 +822,6 @@ section.visible {
   pointer-events: none;
 }
 
-
 /*==================== Krash ====================*/
 .krash-img {
   position: relative;
@@ -976,7 +841,6 @@ section.visible {
   inset: 30% 0 0 0;
   z-index: -1;
 }
-
 
 .services-button:hover .button-icone {
   transform: translateX(.25rem);
@@ -1037,9 +901,7 @@ section.visible {
   visibility: initial;
 }
 
-
 /*==================== PROJECT IN MIND ====================*/
-
 
 .button-form {
   justify-self: flex-start;
@@ -1063,7 +925,6 @@ input.error {
   background-color: rgb(189, 252, 201);
   border-radius: .5rem ;
 }
-
 
 .span-error {
   display: none;
@@ -1115,8 +976,6 @@ input.error {
   animation: show-down .7s forwards;
 }
 
-
-
 .popup-close {
   position: absolute;
   inset: -3rem 0 0 38rem;
@@ -1146,7 +1005,6 @@ input.error {
 
 /*==================== FOOTER ====================*/
 
-
 .foooter-container {
   row-gap: 3.5rem;
 }
@@ -1154,7 +1012,6 @@ input.error {
 .foooter-container {
   grid-template-columns: repeat(2, 1fr);
 }
-
 
 .footer-bg {
   height: 50%;
@@ -1174,13 +1031,11 @@ input.error {
   color: #fff;
 }
 
-
 .footer-links {
   padding-top: 2rem;
   display: flex;
   gap: 3rem;
 }
-
 
 .footer-title,
 .footer-subtitle, 
@@ -1319,9 +1174,6 @@ input.error {
   }
 }
 
-
-
-
 /* Responsividade */
 @media (max-width: 1768px) {
   .about {
@@ -1334,7 +1186,6 @@ input.error {
     z-index: -1;
   }
 }
-
 
 
 @media (max-width: 1500px) {
@@ -1415,8 +1266,6 @@ input.error {
   }
 
 }
-
-
 
 @media (max-width: 1380px) and (min-width: 768px) {
   
