@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
+@import url('./products.css');
+
 :root {
     --header-height: 3rem;
 
@@ -33,6 +35,7 @@
     /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
     --big-font-size: 4.5rem;
     --h1-font-size: 3.5rem;
+    --h1-font-size-big: 4rem;
     --h2-font-size: 2rem;
     --h3-font-size: 1.125rem;
     --normal-font-size: .938rem;
@@ -158,24 +161,31 @@ button {
   padding: 2rem 0 4rem;
 }
 
+.section-title, 
 .section-subtitle {
-  font-size: var(--h1-font-size);
+  color: var(--titulo-cor);
+  font-family: var(--title-font);
+  font-weight: var(--title-font);
+  text-align: left;
+}
+
+.section-title {
+  font-size: var(--h2-font-size);
+  color: var(--titulo-cor);
+}
+
+.section-subtitle {
+  font-size: var(--h1-font-size-big);
   color: var(--title-color);
 }
 
 .section-subtitle {
   display: block;
-  font-size: var(--small-font-size);
+  font-size: var(--h1-font-size-medium);
   margin-bottom: var(--mb-3);
 }
 
-.section-title, 
-.section-subtitle {
-  color: var(--text-cor);
-  font-family: var(--title-font);
-  font-weight: var(--title-font);
-  text-align: center;
-}
+
 
 /*==================== LAYOUT ====================*/
 .container {
@@ -239,7 +249,6 @@ button {
   align-items: center;
   flex-wrap: wrap;
   gap: 1.9rem;
-  font-size: var(--small-font-size);
   color: var(--titulo-cor);
   font-weight: var(--font-medium);
 }
@@ -304,8 +313,11 @@ button {
 
 /*==================== HOME ====================*/
 
-.home-background {
-
+.home-container {
+  padding-top: 10rem;
+  background-image: url('../img/backgrounds/bg-nitendo.svg');
+  background-repeat: no-repeat; /* Certifique-se de que a imagem não se repita */
+  background-size:100%;
   z-index: -1;
 }
 
@@ -323,7 +335,7 @@ button {
 
 .home-content {
   margin: 0 auto;
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -565,6 +577,7 @@ button {
 .about-content-sonic {
   padding: 3rem;
   position: relative;
+  inset: 6rem 0rem 0;
   margin:  0 auto;
   width: 100%;
   text-align: center;
@@ -573,7 +586,7 @@ button {
 .about-content-sonic::before {
   content: '';
   position: absolute;
-  inset: 1rem 0rem 0;
+  inset: -4rem 0rem 0;
   width: 100%;
   height: 600px;
   background: linear-gradient(to right, rgb(255, 247, 247), #d1cfcf);
@@ -1190,7 +1203,7 @@ input.error {
 
 @media (max-width: 1500px) {
   .container {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .about {
@@ -1199,21 +1212,29 @@ input.error {
     z-index: -2;/* Ajuste o tamanho da imagem conforme necessário */
   }
 
+  .about-title {
+    text-align: center;
+    padding: 2rem auto 2rem auto;
+  }
+
   .about-container {
     grid-template-columns: 1fr;
-    justify-items: center;
     gap: 2.5rem;
   }
   .about-content-sonic {
-    padding-left: 5rem;
+    display: flex;
+ 
     margin:  0 auto;
-    width: 70%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
     z-index: 4;
   }
   .about-content-sonic::before {
     position: absolute;
     inset: 1rem 2rem 0;
-    width: 116.7%;
+    width: 102.7%;
     height: 100%;
   }
 
@@ -1278,8 +1299,8 @@ input.error {
 
 @media (max-width: 1278px) {
   .about-content-sonic::before {
-    inset: 1rem 2rem 0;
-    width: 112.7%;
+    inset: 1rem 1.2rem 0;
+    width: 101.7%;
     height: 100%;
   }
   .slider {
@@ -1302,6 +1323,9 @@ input.error {
   }
   .container  {
     margin:  0 auto;
+  }
+  .home-content {
+    width: 100%;
   }
   .slider .btn-next {
     left: 75%;
@@ -1611,15 +1635,14 @@ input.error {
   .menu-content li.active::before {
     inset: .6rem -3.2rem;
     display: block;
-    width: 26px;
+    width: 20px;
     height: 4px;
-;
   }
 
   .menu-content li a::before {
     content: "";
     position: absolute;
-    width: 27%;
+    width: 22%;
     height: 5px;
     bottom: 29px;
     left: -35%;
@@ -1646,9 +1669,9 @@ input.error {
 
   .about-content-sonic {
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem;
     margin: 0 auto;
- 
+    gap: 1rem;
   }
 
   .about-content-sonic::before {
