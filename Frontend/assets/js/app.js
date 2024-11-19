@@ -9,11 +9,16 @@ fetch('https://games-store-aanh.onrender.com/products', {
     'Authorization': `Bearer ${NEON_API_KEY}`,
     'Content-Type': 'application/json'
   }
+
 })
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error('Erro na requisição:', error));
 
+
+}).then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erro na requisição:', error));
 
 
   

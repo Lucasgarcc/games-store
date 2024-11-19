@@ -1,7 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
-@import url('./products.css'); @import url('./gerenciar.css');
+
+@import url('./products.css'); 
+@import url('./gerenciar.css');
+
 
 :root {
     --header-height: 3rem;

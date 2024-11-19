@@ -55,7 +55,11 @@ carSld.addEventListener("touchend", stopDragging);
 const slides = document.querySelectorAll('.slides .slide');
 
 // Configura o IntersectionObserver para monitorar os slides
+
 const observer = new IntersectionObserver((entries) => {
+
+const observer = new IntersectionObserver((entries, observer) => {
+
   entries.forEach(entry => {
     // Se o slide está visível (interseção), adiciona a classe 'visible'
     if (entry.isIntersecting) {
@@ -87,6 +91,7 @@ carSld.addEventListener('wheel', function(event) {
   // Impede o comportamento de rolagem vertical padrão (scroll na página)
   event.preventDefault();
 }, { passive: false });
+
 
 
 const bicicletaSlides = document.querySelector('.products-list-slides');
@@ -146,3 +151,4 @@ bicicletaSlides.addEventListener('mouseup', () => {
 bicicletaSlides.addEventListener('mouseleave', () => {
   isDragging = false;
 });
+
