@@ -55,7 +55,7 @@ carSld.addEventListener("touchend", stopDragging);
 const slides = document.querySelectorAll('.slides .slide');
 
 // Configura o IntersectionObserver para monitorar os slides
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     // Se o slide está visível (interseção), adiciona a classe 'visible'
     if (entry.isIntersecting) {
@@ -89,3 +89,60 @@ carSld.addEventListener('wheel', function(event) {
 }, { passive: false });
 
 
+const bicicletaSlides = document.querySelector('.products-list-slides');
+const setaEsquerda = document.querySelector('.seta-esquerda');
+const setaDireita = document.querySelector('.seta-direita');
+
+// Atualiza a visibilidade das setas
+const atualizarSetas = () => {
+  const maxScrollLeft = bicicletaSlides.scrollWidth - bicicletaSlides.clientWidth;
+  setaEsquerda.style.display = bicicletaSlides.scrollLeft > 0 ? 'block' : 'none';
+  setaDireita.style.display = bicicletaSlides.scrollLeft < maxScrollLeft ? 'block' : 'none';
+};
+
+// Evento de clique nas setas
+setaEsquerda.addEventListener('click', () => {
+  bicicletaSlides.scrollLeft -= 280; // Ajuste baseado no tamanho do item
+  atualizarSetas();
+});
+
+setaDireita.addEventListener('click', () => {
+  bicicletaSlides.scrollLeft += 280;
+  atualizarSetas();
+});
+
+// Suporte para scroll horizontal com o mouse
+bicicletaSlides.addEventListener('wheel', (event) => {
+  event.preventDefault();
+  bicicletaSlides.scrollLeft += event.deltaY > 0 ? 280 : -280;
+  atualizarSetas();
+});
+
+// Inicializa as setas
+atualizarSetas();
+
+// Drag-and-Scroll
+
+
+bicicletaSlides.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX;
+  scrollStart = bicicletaSlides.scrollLeft;
+  bicicletaSlides.style.cursor = 'grabbing';
+});
+
+bicicletaSlides.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const x = e.pageX;
+  const walk = x - startX;
+  bicicletaSlides.scrollLeft = scrollStart - walk;
+});
+
+bicicletaSlides.addEventListener('mouseup', () => {
+  isDragging = false;
+  bicicletaSlides.style.cursor = 'grab';
+});
+
+bicicletaSlides.addEventListener('mouseleave', () => {
+  isDragging = false;
+});

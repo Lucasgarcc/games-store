@@ -1,4 +1,5 @@
 // O token de autenticação deve ser inserido corretamente na string.
+
 const NEON_API_KEY = 'seu_token_aqui';
 
 fetch('https://games-store-aanh.onrender.com/products', {
@@ -8,11 +9,14 @@ fetch('https://games-store-aanh.onrender.com/products', {
     'Authorization': `Bearer ${NEON_API_KEY}`,
     'Content-Type': 'application/json'
   }
-}).then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Erro na requisição:', error));
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erro na requisição:', error));
 
 
+
+  
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.querySelector('#nav-menu'),
   navToggle = document.querySelector('#nav-toggle'),
