@@ -56,8 +56,6 @@ const slides = document.querySelectorAll('.slides .slide');
 
 // Configura o IntersectionObserver para monitorar os slides
 
-const observer = new IntersectionObserver((entries) => {
-
 const observer = new IntersectionObserver((entries, observer) => {
 
   entries.forEach(entry => {

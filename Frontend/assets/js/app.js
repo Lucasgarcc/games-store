@@ -15,13 +15,6 @@ fetch('https://games-store-aanh.onrender.com/products', {
 .then(data => console.log(data))
 .catch(error => console.error('Erro na requisição:', error));
 
-
-}).then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Erro na requisição:', error));
-
-
-  
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.querySelector('#nav-menu'),
   navToggle = document.querySelector('#nav-toggle'),
@@ -109,10 +102,3 @@ if (sectionsScroll.length) {
   window.addEventListener('scroll', animaScroll);
 }
 
-
-tag = document.querySelector('.products-slider-containers');
-
-console.log(tag);
-
-
-console.log('Arquivo app.js carregado com sucesso!');
