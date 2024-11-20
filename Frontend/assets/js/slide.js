@@ -1,3 +1,4 @@
+/* ===================== PRIMEIRO SLIDE =====================*/ 
 
 const carSld = document.getElementById("carrusel-slides");
 const carRight = document.querySelector(".btn-next");
@@ -56,7 +57,7 @@ const slides = document.querySelectorAll('.slides .slide');
 
 // Configura o IntersectionObserver para monitorar os slides
 
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
 
   entries.forEach(entry => {
     // Se o slide está visível (interseção), adiciona a classe 'visible'
@@ -91,62 +92,74 @@ carSld.addEventListener('wheel', function(event) {
 }, { passive: false });
 
 
+/* ===================== SEGUNDO SLIDE =====================*/ 
 
-const bicicletaSlides = document.querySelector('.products-list-slides');
+// Variáveis do segundo slide
+const productSlides = document.querySelector('.products-list-slides');
 const setaEsquerda = document.querySelector('.seta-esquerda');
 const setaDireita = document.querySelector('.seta-direita');
 
 // Atualiza a visibilidade das setas
 const atualizarSetas = () => {
-  const maxScrollLeft = bicicletaSlides.scrollWidth - bicicletaSlides.clientWidth;
-  setaEsquerda.style.display = bicicletaSlides.scrollLeft > 0 ? 'block' : 'none';
-  setaDireita.style.display = bicicletaSlides.scrollLeft < maxScrollLeft ? 'block' : 'none';
+  const maxScrollLeft = productSlides.scrollWidth - productSlides.clientWidth;
+  setaEsquerda.style.display = productSlides.scrollLeft > 0 ? 'block' : 'none';
+  setaDireita.style.display = productSlides.scrollLeft < maxScrollLeft ? 'block' : 'none';
 };
 
 // Evento de clique nas setas
 setaEsquerda.addEventListener('click', () => {
-  bicicletaSlides.scrollLeft -= 280; // Ajuste baseado no tamanho do item
+  productSlides.scrollLeft -= 280; // Ajuste baseado no tamanho do item
   atualizarSetas();
 });
 
 setaDireita.addEventListener('click', () => {
-  bicicletaSlides.scrollLeft += 280;
+  productSlides.scrollLeft += 280;
   atualizarSetas();
 });
 
 // Suporte para scroll horizontal com o mouse
-bicicletaSlides.addEventListener('wheel', (event) => {
+productSlides.addEventListener('wheel', (event) => {
   event.preventDefault();
-  bicicletaSlides.scrollLeft += event.deltaY > 0 ? 280 : -280;
-  atualizarSetas();
+  const smoothScrollAmount = 80; // Ajuste para maior ou menor fluidez
+  productSlides.scrollLeft += event.deltaY > 0 ? smoothScrollAmount : -smoothScrollAmount;
 });
 
 // Inicializa as setas
 atualizarSetas();
 
 // Drag-and-Scroll
+let Dragging = false;
+let startCardX, scrollCardStart;
 
+// Início do arraste
+const startSlideDragging = (e) => {
+  Dragging = true;
+  startCardX = e.type === 'touchstart' ? e.touches[0].pageX : e.pageX;
+  scrollCardStart = productSlides.scrollLeft;
+  productSlides.style.cursor = 'grabbing';
+};
 
-bicicletaSlides.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.pageX;
-  scrollStart = bicicletaSlides.scrollLeft;
-  bicicletaSlides.style.cursor = 'grabbing';
-});
+// Arrastando
+const dragScrollSlide = (e) => {
+  if (!Dragging) return;
+  const currentX = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
+  const distance = startCardX - currentX;
+  productSlides.scrollLeft = scrollCardStart + distance;
+};
 
-bicicletaSlides.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  const x = e.pageX;
-  const walk = x - startX;
-  bicicletaSlides.scrollLeft = scrollStart - walk;
-});
+// Fim do arraste
+const stopDraggingSlide = () => {
+  Dragging = false;
+  productSlides.style.cursor = 'grab';
+};
 
-bicicletaSlides.addEventListener('mouseup', () => {
-  isDragging = false;
-  bicicletaSlides.style.cursor = 'grab';
-});
+// Eventos de mouse e toque
+productSlides.addEventListener('mousedown', startSlideDragging);
+productSlides.addEventListener('touchstart', startSlideDragging);
 
-bicicletaSlides.addEventListener('mouseleave', () => {
-  isDragging = false;
-});
+productSlides.addEventListener('mousemove', dragScrollSlide);
+productSlides.addEventListener('touchmove', dragScrollSlide);
 
+productSlides.addEventListener('mouseup', stopDraggingSlide);
+productSlides.addEventListener('mouseleave', stopDraggingSlide);
+productSlides.addEventListener('touchend', stopDraggingSlide);

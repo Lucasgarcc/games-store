@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <link rel="stylesheet" href="./assets/css/gerenciar.css">
 
   <script>
     document.documentElement.className += ' js';
@@ -34,13 +33,13 @@
       </div>
       <ul class="menu-content nav-menu" id="nav-menu">
         <li class="menu-item">
-          <a href="#" class="menu-link">Início</a>
+          <a href="./index.html" class="menu-link">Início</a>
         </li>
         <li class="menu-item">
           <a href="./produtos.html" class="menu-link">Produtos</a>
         </li>
         <li class="menu-item active">
-          <a href="#" class="menu-link">Gerenciar Produtos</a>
+          <a href="./gerenciar.html" class="menu-link">Gerenciar Produtos</a>
         </li>
         <li class="menu-item">
           <a href="#" class="menu-link">Termos e Condições</a>
@@ -50,122 +49,215 @@
     </nav>
   </header>
   <main class="main">
-
-    <section id="search-products" >
-           <div>
-        <div class="title container">
-          <div>
-          <p class="font-2-xl cor-5">R$ 2499</p>
-          <h1 class="font-1-xxl cor-0">PlayStaion 1<span class="cor-p1">.</span></h1>
-          </div>
-
-          <div class="products-search cor-p1">
-            <input class="aria-search" type="text">
-            <a href="">
-              <i class="uil uil-search icon-search"></i>
-            </a>
+    
+    <section class=" product-section" id="product"  data-anima="scroll">
+        <div class="product-container">
+          <div class="title ">
+            <div>
+            <p class="font-2-xl cor-5">R$ 2499</p>
+            <h1 class="font-1-xxl cor-0">PlayStaion 1<span class="cor-p1">.</span></h1>
+            <p></p>
+            </div>
+  
+            <div class="products-search cor-p1">
+              <form action="">
+                <input class="aria-search" type="text">           
+                <a href="">
+                  <i class="uil uil-search icon-search"></i>
+                </a>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    
-    <section id="product"  data-anima="scroll" data-anima="left">
-      <div class="product container">
-
-        <div class="product-images bicicletas-bg">
-          <div class="card-emphasis-product"> <!--Card destaque-->
-              <img class="product-playstaiton" src="./assets/img/images/ps1.png" alt="">
-          </div>
-
-          <div class="card-produtcs grid" data-anima="scroll" data-anima="rigth">
-            <div>
-              <img class="card-item-img" src="./assets/img/images/super-nitendo-cd.png" alt="">
-            </div>
+        <div class="product ">
+          
+          <div class="product-images">
             
-            <div>
-              <img class="card-item-img" src="./assets/img/images/sega-16-bit-cd.png" alt="">
+            <div class="card-emphasis-product">
+              <img src="./assets/img/images/ps1.png" alt="Produto em Destaque">
+            </div>
+            <div class="card-produtcs grid">
+              <div>
+                <img class="card-item-img" src="./assets/img/images/super-nitendo-cd.png" alt="Super Nintendo">
+              </div>
+              <div>
+                <img class="card-item-img" src="./assets/img/images/sega-16-bit-cd.png" alt="Sega 16">
+              </div>
             </div>
           </div>
           
-        </div>
-        <div class="product-content">
-          <p class="font-2-l cor-5">
-            O PlayStation 1, lançado pela Sony em 1994, é um console de videogame icônico que marcou uma era. Seu design é compacto e característico, com uma carcaça cinza claro e uma tampa superior redonda que se abre para inserir discos de jogo em CD. Ele possui duas portas frontais para controles e uma porta para cartões de memória, essenciais para salvar o progresso nos jogos. Na parte traseira, o PS1 possui várias saídas, incluindo uma porta AV Multi Out para conectar o console à TV, uma saída de áudio estéreo para melhor qualidade de som e uma entrada de energia externa. O console é conhecido por sua robustez e durabilidade, tornando-o uma escolha popular entre os colecionadores de videogames retro.</p>
-
-          <div class="products-buttons-container grid">
-            <div class="products-button-item" >
-              <button class="products-button-register">Cadastrar Produtos</button>
-            </div>
-            <div class="products-button-item">
-              <button class="products-button-alter" >Alterar Produtos</button>
-            </div>
+          <div class="product-content">
+            <p class="font-2-l cor-5">
+              O PlayStation 1, lançado pela Sony em 1994, é um console de videogame icônico que marcou uma era. Seu design é compacto e característico, com uma carcaça cinza claro e uma tampa superior redonda que se abre para inserir discos de jogo em CD. Ele possui duas portas frontais para controles e uma porta para cartões de memória, essenciais para salvar o progresso nos jogos. Na parte traseira, o PS1 possui várias saídas, incluindo uma porta AV Multi Out para conectar o console à TV, uma saída de áudio estéreo para melhor qualidade de som e uma entrada de energia externa. O console é conhecido por sua robustez e durabilidade, tornando-o uma escolha popular entre os colecionadores de videogames retro.</p>
+  
+              <div class="products-buttons-container grid">
+                <!-- Botão Cadastrar Produtos -->
+                <div class="products-button-item">
+                  <a class="products-button-register services-button button--flex">Cadastrar Produtos
+                    <i class="uil uil-arrow-right button-icone"></i>
+                  </a>
+                </div>
+              
+                <!-- Modal Cadastrar Produtos -->
+                <div class="services-modal">
+                  <div class="services-modal-content">
+                    <div class="services-modal-info">
+                      <h4 class="services-modal-title">Cadastrar Produtos</h4>
+                      <i class="uil uil-times services-modal-close"></i>
+                      <div class="services-modal-services grid">
+                        <div class="services-modal-service">
+                          <i class=" services-modal-icone"></i>
+                          <p>Adicione o produto desejado.</p>
+                        </div>
+                        <form id="productForm"> 
+                          <div class="product-data">
+                             <label for="name">Nome do Produto:</label> <input type="text" id="name" name="name" required> 
+                          </div> 
+                          <div class="product-data"> 
+                            <label for="value">Valor:</label> 
+                            <input type="text" id="value" name="value" required>
+                          </div> 
+                          <div class="product-data"> 
+                            <label for="image">Imagem:</label> 
+                            <input type="url" id="image" name="image" accept="image/*" required> 
+                          </div> 
+                          <button class="button-form" type="submit">Enviar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Botão Alterar Produtos -->
+                <div class="products-button-item">
+                  <a class="products-button-alter services-button button--flex">Alterar Produtos
+                    <i class="uil uil-arrow-right button-icone"></i>
+                  </a>
+                </div>
+              
+                <!-- Modal Alterar Produtos -->
+                <div class="services-modal">
+                  <div class="services-modal-content">
+                    <div class="services-modal-info">
+                      <h4 class="services-modal-title">Alterar Produtos</h4>
+                      <i class="uil uil-times services-modal-close"></i>
+                        <div class="services-modal-services grid">
+                          <div class="services-modal-service">
+                            <i class=" services-modal-icone"></i>
+                            <p>Alterar informações do produto.</p>
+                          </>
+                        </div>
+                        <form id="productForm"> 
+                          <div class="product-data">
+                             <label for="name">Nome do Produto:</label> <input type="text" id="name" name="name" required> 
+                          </div> 
+                          <div class="product-data"> 
+                            <label for="value">Valor:</label> 
+                            <input type="text" id="value" name="value" required>
+                          </div> 
+                          <div class="product-data"> 
+                            <label for="image">Imagem:</label> 
+                            <input type="url" id="image" name="image" accept="image/*" required> 
+                          </div> 
+                          <div class="button-content-form">
+                            <button class="button-form" type="submit">Alterar</button>
+                          <button class="button-form" type="submit">Deletar</button>
+                          </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
-      </div>
+
+ 
     </section>
 
-    <article class="products-list container"  data-anima="scroll" data-anima="rigth">
+    <section class="product-slide-section section" id="slides">
+      <article class="products-list "  data-anima="scroll" data-anima="rigth">
       <div class="carousel-container">
+        <h2 class="product-subtitle">Escolha o seu<span class="cor-p1">.</span></h2>
         <div id="carrusel-slides" class="carousel-slides">
-        <h2>Escolha o seu<span class="cor-p1">.</span></h2>
+        
           <div class="products-list" >
             <h2 class="products-list-subtitle">Consoles Em Destaque</h2>
             <button class="seta-esquerda btn-prev" aria-label="Anterior">◀</button>
 
-              <ul class="products-list-slides"">
+              <ul class="products-list-slides">
                 <!-- Repetir os itens para simular mais de 100 produtos -->
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="./assets/img/images/super-nitendo-cd.png" alt="Bicicleta 1">
-                    <h3>Super Nitendo</h3>
-                    <span class="products-list-value">R$ 1999</span>
+                    <h3 class="product-name">Super Nitendo</h3>
+                    <span class="product-price">R$ 1999</span>
+                    <p class="prouct-description">
+                      Super Nintendo Entertainment System (SNES)
+                      O Super Nintendo Entertainment System (SNES), lançado pela Nintendo em 1990 no Japão e em 1991 na América do Norte, é um console de 16 bits que marcou uma geração de jogadores. Conhecido por sua vasta biblioteca de jogos clássicos, o SNES trouxe gráficos melhorados e capacidades sonoras avançadas em comparação ao seu predecessor, o NES. Este console é lembrado por jogos icônicos como "Super Mario World", "The Legend of Zelda: A Link to the Past", e "Super Metroid", que continuam a ser adorados até hoje.
+                      
+                      O design do SNES é robusto e intuitivo, com controles ergonômicos que introduziram botões de ombro para uma jogabilidade mais complexa. O console também apresentou a tecnologia Mode 7, que permitia a criação de efeitos gráficos tridimensionais simulados, proporcionando uma experiência visual inovadora para a época.</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="./assets/img/images/sega-16-bit-cd.png" alt="Bicicleta 2">
+                    <h3 class="product-name">Sega 16</h3>
+                    <span class="product-value">R$ 1499</span>
+                    <p class="product-description">Sega Mega Drive/Genesis
+                      O Sega Mega Drive (conhecido como Sega Genesis na América do Norte) é um console de videogame de 16 bits lançado pela Sega em 1988 no Japão e em 1989 na América do Norte. Este console foi uma resposta direta ao sucesso do Nintendo Entertainment System (NES) e entrou na guerra de consoles contra o SNES. Com um design elegante e futurista, o Mega Drive/Genesis destacou-se por suas capacidades gráficas e sonoras superiores, oferecendo uma experiência de jogo rica e imersiva.
+                      
+                      O Mega Drive/Genesis é famoso por jogos lendários como "Sonic the Hedgehog", "Streets of Rage", e "Altered Beast", que aproveitaram ao máximo o hardware do console para oferecer jogabilidade rápida e envolvente. O console também era conhecido por seu marketing agressivo, destacando a potência do processador de 16 bits e a qualidade dos jogos em comparação aos concorrentes.</p>
                   </a>
                 </li>
 
-
                 <li>
-                  <a href="">
-                    <img src="./assets/img/images/sega-16-bit-cd.png" alt="Bicicleta 2">
-                    <h3>Sega 16</h3>
-                    <span class="products-list-value">R$ 2499</span>
+                  <a href="#">
+                    <img src="./assets/img/images/ps1-card.png" alt="Bicicleta 2">
+                    <h3 class="product-name">PlayStaion 1</h3>
+                    <span class="product-value">R$ 2499</span>
+                    <p class="product-description">
+                      O PlayStation 1, lançado pela Sony em 1994, é um console de videogame icônico que marcou uma era. Seu design é compacto e característico, com uma carcaça cinza claro e uma tampa superior redonda que se abre para inserir discos de jogo em CD. Ele possui duas portas frontais para controles e uma porta para cartões de memória, essenciais para salvar o progresso nos jogos. Na parte traseira, o PS1 possui várias saídas, incluindo uma porta AV Multi Out para conectar o console à TV, uma saída de áudio estéreo para melhor qualidade de som e uma entrada de energia externa. O console é conhecido por sua robustez e durabilidade, tornando-o uma escolha popular entre os colecionadores de videogames retro.</p>
                   </a>
                 </li>
 
                 <!-- Adicione mais itens conforme necessário -->
               </ul>
-
             <button class="seta-direita btn-next" aria-label="Próximo">▶</button>
           </div>
-
         </div>
-
       </div>
 
     </article>
-    <article class="war-bg"  data-anima="scroll"> 
-      <div class="console-war ">
-        <h1 class="console-title-war section-title">FALAR NA GUERRA DE CONSOLES <span class="war-title-detale ">?</span></h1>
-        <div class="console-war-content container" >
-          <div>
-          <p>
-            A guerra de consoles foi a disputa entre a Sega e a Nintendo no final dos anos 1980 e início dos anos 1990. A Sega tentou entrar no mercado norte-americano com o console Sega Genesis e conseguiu conquistar a maioria do mercado em três anos. No entanto, a Sega não resistiu à Nintendo e sucumbiu ao próprio arrojo. A Sony já dominava o mercado com o PlayStation e, em 2000, lançou o PlayStation 2, com características similares às do Dreamcast. No ano seguinte, a Sega anunciou que deixaria de produzir consoles.
-          </p>
-          <p>
-            A rivalidade entre Sega e Nintendo não apenas definiu uma geração de jogadores, mas também impulsionou a inovação e a criatividade na indústria dos videogames. Durante este período, ambos os consoles lançaram uma série de jogos icônicos que continuam a ser lembrados até hoje. Títulos como "Sonic the Hedgehog" para o Genesis e "Super Mario World" para o Super Nintendo são apenas alguns exemplos dos jogos que capturaram a imaginação dos jogadores ao redor do mundo. Esta batalha acirrada entre as duas empresas criou um ambiente onde a competição forçou ambas a inovar constantemente, resultando em avanços tecnológicos que beneficiaram toda a indústria.
-          </p>
-          </p>
-          </div>
-          <img data-anima="scroll" data-anima="rigth" class="sonic-war" src="./assets/img/images/sonic.png" alt="">
-        </div> 
-      </div>
-    </article>
 
-    <article class="banner-war-bg">
-      <div class="banner container">
+    </section>
+
+    <section class="war-section">
+      <article class="war-bg"  data-anima="scroll"> 
+        <div class="console-war ">
+          <h1 class="console-title-war ">FALAR NA GUERRA DE CONSOLES <span class="war-title-detale ">?</span></h1>
+          <div class="console-war-content" >
+            <div>
+            <p>
+              A guerra de consoles foi a disputa entre a Sega e a Nintendo no final dos anos 1980 e início dos anos 1990. A Sega tentou entrar no mercado norte-americano com o console Sega Genesis e conseguiu conquistar a maioria do mercado em três anos. No entanto, a Sega não resistiu à Nintendo e sucumbiu ao próprio arrojo. A Sony já dominava o mercado com o PlayStation e, em 2000, lançou o PlayStation 2, com características similares às do Dreamcast. No ano seguinte, a Sega anunciou que deixaria de produzir consoles.
+            </p>
+            <p>
+              A rivalidade entre Sega e Nintendo não apenas definiu uma geração de jogadores, mas também impulsionou a inovação e a criatividade na indústria dos videogames. Durante este período, ambos os consoles lançaram uma série de jogos icônicos que continuam a ser lembrados até hoje. Títulos como "Sonic the Hedgehog" para o Genesis e "Super Mario World" para o Super Nintendo são apenas alguns exemplos dos jogos que capturaram a imaginação dos jogadores ao redor do mundo. Esta batalha acirrada entre as duas empresas criou um ambiente onde a competição forçou ambas a inovar constantemente, resultando em avanços tecnológicos que beneficiaram toda a indústria.
+            </p>
+            </p>
+            </div>
+            <img data-anima="scroll" data-anima="rigth" class="sonic-war" src="./assets/img/images/sonic.png" alt="">
+          </div> 
+        </div>
+      </article>
+    </section>
+    
+    <section class="banner-section section">
+      <article class="banner-war-bg">
+      <div class="banner ">
         <div class="banner-image" data-anima="scroll" data-anima="rigth" >
-          <img class="mario-war" src="./assets/img/images/mario.png" alt="Pessoa parada em cima de uma bicicleta.">
+          <img class="luigi-war" src="./assets/img/images/luigi.png" alt="Pessoa parada em cima de uma bicicleta.">
         </div>
-        <div class="banner-conteudo" data-anima="scroll" data-anima="left">
+        <div class="banner-content" data-anima="scroll" data-anima="left">
           <h2 class="font-1-xxl cor-0">GAMES MAIS NOSTÁLGICOS
             COMO SURGIU
             OS CONSOLES <span class="cor-p1">.</span></h2>
@@ -174,6 +266,8 @@
         </div>
       </div>
     </article>
+
+    </section>
 
 
   </main>
@@ -217,6 +311,6 @@
 
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/slide.js"></script>
-  
+  <script src="./assets/js/productCards.js"></script>
 </body>
 </html>

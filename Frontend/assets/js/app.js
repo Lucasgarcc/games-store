@@ -1,19 +1,19 @@
 // O token de autenticação deve ser inserido corretamente na string.
 
-const NEON_API_KEY = 'seu_token_aqui';
+// const NEON_API_KEY = 'seu_token_aqui';
 
-fetch('https://games-store-aanh.onrender.com/products', {
-  method: 'GET', 
-  headers: {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${NEON_API_KEY}`,
-    'Content-Type': 'application/json'
-  }
+// fetch('https://games-store-aanh.onrender.com/products', {
+//   method: 'GET', 
+//   headers: {
+//     'Accept': 'application/json',
+//     'Authorization': `Bearer ${NEON_API_KEY}`,
+//     'Content-Type': 'application/json'
+//   }
 
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Erro na requisição:', error));
+// })
+// .then(response => response.json())
+// .then(data => console.log(data))
+// .catch(error => console.error('Erro na requisição:', error));
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.querySelector('#nav-menu'),
@@ -101,4 +101,32 @@ if (sectionsScroll.length) {
   animaScroll();
   window.addEventListener('scroll', animaScroll);
 }
+
+
+/*==================== GERENCIAR MODAL ====================*/
+ 
+const modalManage = document.querySelectorAll('.services-modal');
+const buttonManage = document.querySelectorAll('.services-button');
+const closeManage = document.querySelectorAll('.services-modal-close');
+
+
+const activeModal = 'active-modal'
+
+
+buttonManage.forEach((button, i) => {
+  button.addEventListener('click', () => {
+    if (modalManage[i]) {
+      modalManage[i].classList.add(activeModal);
+    } 
+  })
+})
+
+closeManage.forEach((closeButton, index) => {
+  closeButton.addEventListener('click', () => {
+    if (modalManage[index]) { // Verificar se o modal correspondente existe
+      modalManage[index].classList.remove(activeModal);
+    }
+  });
+});
+
 

@@ -19,6 +19,7 @@
     --primeira-cor-terc: hsl(104.75deg 50.43% 45.88%);   
     --primeira-cor-seg-detale: hsl(81, 65%, 44%);
     --primeira-cor-alt: hsl(var(--hue-color), 84%, 10%);
+    --primeira-cor-seg-alt: hsl(97, 71%, 24%);
     --primeira-cor-lighter: hsl(97, 90%, 39%);
     --primeira-cor-lighter-seg: hsl(98, 47%, 49%);
     --primeira-cor-lighter-terc: hsl(90, 71%, 70%);
@@ -28,6 +29,7 @@
     --input-cor: hsl(var(--hue-color), 70%, 96%);
     --body-cor: hsl(0, 10%, 4%);
     --container-cor: #fff;
+    --modal-cor: #F9FFF3;
     --scroll-bar-cor: hsl(var(--hue-color), 12%, 90%);
     --scroll-thumb-cor: hsl(var(--hue-color), 12%, 80%);
 
@@ -432,7 +434,6 @@ button {
   display: inline-block;
   background-color: var(--primeira-cor);
   font-weight: var(--font-medium);
-  color: #fff;
   border-radius: .5rem;
 }
 
@@ -737,6 +738,7 @@ button {
   width: 100px;
   height: 150px;
   top: 50%;
+  background-color: transparent;
   transform: translateY(-50%);
   border-radius: 5%;
   cursor: pointer;
@@ -858,29 +860,95 @@ button {
   z-index: -1;
 }
 
+.services-button:hover {
+  color: var(--primeira-cor-seg-detale);
+
+}
+
 .services-button:hover .button-icone {
+  color: var(--primeira-cor-seg-detale);
   transform: translateX(.25rem);
+  cursor: pointer;
 }
 
 .services-modal {
   padding: 0 1rem;
   position: fixed;
+  width: 100%;
   inset: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.288);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: var(--z-modal);
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
 }
 
 .services-modal-content{
+  padding: 5rem;
+  margin: 0 auto;
+  width: 70%;
+  height: 70%;
   padding:1.5rem;
   position: relative;
-  background-color: var(--container-cor);
+  background-color: var(--modal-cor);
   border-radius: .5rem;
+}
+
+.services-modal-info{
+  padding: 2rem;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#productForm {
+  width: 600px;
+  padding: .5rem;
+  border-radius: 10px; 
+}
+
+.product-data { 
+  margin-bottom: 15px; 
+} 
+
+label{
+  display: block; margin-bottom: 5px; 
+} 
+
+input[type="text"], input[type="number"], 
+input[type="url"], button { 
+  width: 100%; 
+  padding: 10px; 
+  margin-top: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+}
+
+button { 
+  padding: 1rem;
+  background-color: var(--primeira-cor-seg-detale); 
+  font-weight: var(--font-medium) ;
+  color: var(--titulo-cor);
+  cursor: pointer;
+  border: none; 
+  text-transform: uppercase;
+}
+
+.button-form:hover { 
+  background-color: var(--primeira-cor-lighter-terc);
+  color: var(--primeira-cor-lighter-seg);
+}
+
+.button-content-form {
+ display: flex;
+ gap: 3rem;
 }
 
 .services-modal-services {
@@ -888,22 +956,30 @@ button {
 }
 
 .services-modal-service {
+  font-size: var(--h3-font-size);
   display: flex;
 }
 
 .services-modal-title {
   margin-bottom: var(--h3-font-size);
-  font-size: var(--h3-font-size);
+  font-size: var(--h2-font-size);
+  color: var(--primeira-cor-alt);
   font-weight: var(--font-medium);
 }
 
 .services-modal-close {
   position: absolute;
   inset: 1rem 1rem auto auto;
-  font-size: 1.5rem;
-  color: var(--primeira-cor);
+  font-size: 2.5rem;
+  color: var(--primeira-cor-seg-alt);
   cursor: pointer;
 }
+
+.services-modal-close:hover {
+  color: var(--primeira-cor-seg-detale);
+
+}
+
 
 .services-modal-icone {
   margin-right: var(--mb-0-25);
@@ -914,9 +990,12 @@ button {
 /* Active Modal */
 .active-modal {
   opacity: 1;
-  visibility: initial;
+  visibility: visible;
 }
 
+.services-button {
+  cursor: pointer;
+}
 /*==================== PROJECT IN MIND ====================*/
 
 .button-form {
@@ -1315,7 +1394,13 @@ input.error {
     width: 93.7%;
     height: 145%;
   }
- 
+   
+  .services-modal-content {
+    padding-bottom: 5rem ;
+    width: 100%;
+    height: auto;
+  }
+
 }
 
 @media (max-width: 1024px){
@@ -1569,9 +1654,15 @@ input.error {
   .krash-section {
     padding-top: 10rem;
   }
+
+  #productForm {
+    width: 73vw;
+  }
+
   .footer-container {
     grid-template-columns: repeat(3, 1fr);
   }
+
 }
 
 @media  screen and (max-width: 600px) {
@@ -1601,6 +1692,10 @@ input.error {
 
   .foooter-container {
     grid-template-columns:  1fr;
+  }
+  .button-content-form {
+   flex-direction: column;
+   gap: 1.5rem;
   }
 }
 
