@@ -24,4 +24,3 @@ Projeto contruído com o objetivo de sair do zero no conhecimento do Node.js.
 >
 > ![EsLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 > ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
-
