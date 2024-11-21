@@ -105,6 +105,7 @@ if (sectionsScroll.length) {
 
 /*==================== GERENCIAR MODAL ====================*/
  
+
 const modalManage = document.querySelectorAll('.services-modal');
 const buttonManage = document.querySelectorAll('.services-button');
 const closeManage = document.querySelectorAll('.services-modal-close');
@@ -130,3 +131,22 @@ closeManage.forEach((closeButton, index) => {
 });
 
 
+
+const modalProduct = document.querySelector('.modal'); // Seleciona o modal
+const buttonProduct = document.querySelector('.search-button'); // Botão para abrir o modal
+const closeProduct = document.querySelector('.modal-close'); // Botão para fechar o modal
+
+const activeModalProduct = 'active-modal-products'; // Classe usada para ativar o modal
+
+// Verificar se os elementos existem antes de adicionar os eventos
+if (buttonProduct && modalProduct && closeProduct) {
+  buttonProduct.addEventListener('click', () => {
+    modalProduct.classList.add(activeModalProduct); // Adiciona a classe para mostrar o modal
+  });
+
+  closeProduct.addEventListener('click', () => {
+    modalProduct.classList.remove(activeModalProduct); // Remove a classe para esconder o modal
+  });
+} else {
+  console.warn('Alguns elementos do modal não foram encontrados no DOM.');
+}
