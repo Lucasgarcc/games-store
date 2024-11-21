@@ -55,17 +55,46 @@
           <div class="title ">
             <div>
             <p class="font-2-xl cor-5">R$ 2499</p>
-            <h1 class="font-1-xxl cor-0">PlayStaion 1<span class="cor-p1">.</span></h1>
+            <h1 class="font-1-xxl cor-0">PlayStation 1<span class="cor-p1">.</span></h1>
             <p></p>
             </div>
-  
-            <div class="products-search cor-p1">
-              <form action="">
-                <input class="aria-search" type="text">           
-                <a href="">
+            <!-- Modal Pesquisar Produtos -->
+            <div class="products-search cor-p1 ">
+              <formc class="products-search">
+                <span class="cor-2 products-search-title">Procurar Produto 
+                  <i class="uil uil-arrow-right  button-icone-search"></i> 
+              </span>         
+                <a href="#" class="search-button">
                   <i class="uil uil-search icon-search"></i>
                 </a>
-              </form>
+              </formc>
+              <div class="modal">
+                <div class="modal-content">
+                  <div class="modal-info">
+                    <h4 class="modal-title"><i class="uil uil-shopping-bag modal-icone"></i>
+                      Produtos Cadastrados</h4>
+                    <i class="uil uil-times modal-close"></i>
+                    <div class="modal-products grid">
+                      <div class="modal-Product">
+                        <i class="modal-icone"></i>
+                      </div>
+                      <form class="search-form prod"> 
+                        <div class="product-data-search">
+                          <input class="aria-search-product" type="text" id="aria-search">           
+                          <a href="">
+                            <i class="uil uil-search  icon-search"></i>
+                          </a>
+                        </div> 
+                      </form>
+                      <div class="list-product-register">
+                        <ul class="list-container-register">
+                      </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -171,6 +200,7 @@
           </div>
         </div>
 
+
  
     </section>
 
@@ -184,7 +214,7 @@
             <h2 class="products-list-subtitle">Consoles Em Destaque</h2>
             <button class="seta-esquerda btn-prev" aria-label="Anterior">◀</button>
 
-              <ul class="products-list-slides">
+              <ul class="products-list-slides" data-products="value">
                 <!-- Repetir os itens para simular mais de 100 produtos -->
                 <li>
                   <a href="#">
@@ -202,7 +232,7 @@
                   <a href="#">
                     <img src="./assets/img/images/sega-16-bit-cd.png" alt="Bicicleta 2">
                     <h3 class="product-name">Sega 16</h3>
-                    <span class="product-value">R$ 1499</span>
+                    <span class="product-price">R$ 1499</span>
                     <p class="product-description">Sega Mega Drive/Genesis
                       O Sega Mega Drive (conhecido como Sega Genesis na América do Norte) é um console de videogame de 16 bits lançado pela Sega em 1988 no Japão e em 1989 na América do Norte. Este console foi uma resposta direta ao sucesso do Nintendo Entertainment System (NES) e entrou na guerra de consoles contra o SNES. Com um design elegante e futurista, o Mega Drive/Genesis destacou-se por suas capacidades gráficas e sonoras superiores, oferecendo uma experiência de jogo rica e imersiva.
                       
@@ -213,8 +243,8 @@
                 <li>
                   <a href="#">
                     <img src="./assets/img/images/ps1-card.png" alt="Bicicleta 2">
-                    <h3 class="product-name">PlayStaion 1</h3>
-                    <span class="product-value">R$ 2499</span>
+                    <h3 class="product-name">PlayStation 1</h3>
+                    <span class="product-price">R$ 2499</span>
                     <p class="product-description">
                       O PlayStation 1, lançado pela Sony em 1994, é um console de videogame icônico que marcou uma era. Seu design é compacto e característico, com uma carcaça cinza claro e uma tampa superior redonda que se abre para inserir discos de jogo em CD. Ele possui duas portas frontais para controles e uma porta para cartões de memória, essenciais para salvar o progresso nos jogos. Na parte traseira, o PS1 possui várias saídas, incluindo uma porta AV Multi Out para conectar o console à TV, uma saída de áudio estéreo para melhor qualidade de som e uma entrada de energia externa. O console é conhecido por sua robustez e durabilidade, tornando-o uma escolha popular entre os colecionadores de videogames retro.</p>
                   </a>
@@ -234,7 +264,7 @@
     <section class="war-section">
       <article class="war-bg"  data-anima="scroll"> 
         <div class="console-war ">
-          <h1 class="console-title-war ">FALAR NA GUERRA DE CONSOLES <span class="war-title-detale ">?</span></h1>
+          <h1 class="console-title-war ">VOCÊ CONHECE OU JÁ OUVIU, FALAR NA GUERRA DE CONSOLES<span class="war-title-detale ">?</span></h1>
           <div class="console-war-content" >
             <div>
             <p>

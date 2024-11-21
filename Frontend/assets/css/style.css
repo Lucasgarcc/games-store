@@ -442,6 +442,7 @@ button {
 }
 
 .button-icone {
+  color: var(--primeira-cor-alt);
   margin-left: var(--mb-0-5);
   font-size: 1.25rem;
   transition: .3s;
@@ -860,70 +861,12 @@ button {
   z-index: -1;
 }
 
-.services-button:hover {
-  color: var(--primeira-cor-seg-detale);
-
-}
-
-.services-button:hover .button-icone {
-  color: var(--primeira-cor-seg-detale);
-  transform: translateX(.25rem);
-  cursor: pointer;
-}
-
-.services-modal {
-  padding: 0 1rem;
-  position: fixed;
-  width: 100%;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.288);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: var(--z-modal);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-
-}
-
-.services-modal-content{
-  padding: 5rem;
-  margin: 0 auto;
-  width: 70%;
-  height: 70%;
-  padding:1.5rem;
-  position: relative;
-  background-color: var(--modal-cor);
-  border-radius: .5rem;
-}
-
-.services-modal-info{
-  padding: 2rem;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-#productForm {
-  width: 600px;
-  padding: .5rem;
-  border-radius: 10px; 
-}
-
-.product-data { 
-  margin-bottom: 15px; 
-} 
 
 label{
   display: block; margin-bottom: 5px; 
 } 
 
-input[type="text"], input[type="number"], 
-input[type="url"], button { 
+#productForm input, #productForm button { 
   width: 100%; 
   padding: 10px; 
   margin-top: 5px; 
@@ -941,6 +884,98 @@ button {
   text-transform: uppercase;
 }
 
+/*==================== FORMULARIO DO MODAL GERENCIAR ====================*/
+
+#productForm {
+  width: 600px;
+  padding: .5rem;
+  border-radius: 10px; 
+}
+
+
+.product-data { 
+  margin-bottom: 15px; 
+} 
+
+.product-data-search{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 520px;
+  height: 60px;
+}
+
+.search-form{
+ margin: 0;
+
+}
+
+.aria-search-product {
+  width: 100%;
+  height: 50%;
+  border-radius: .2rem;
+}
+
+
+/*==================== MODALS ====================*/
+.services-button:hover,
+.search-button:hover {
+  color: var(--primeira-cor-seg-detale);
+
+}
+
+.services-button:hover,
+.button-icone:hover {
+  color: var(--primeira-cor-seg-detale);
+  transform: translateX(.25rem);
+  cursor: pointer;
+}
+
+.services-modal, .modal {
+  padding: 0 1rem;
+  position: fixed;
+  width: 100%;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.288);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+}
+
+.services-modal-content, .modal-content{
+  padding: 5rem;
+  margin: 0 auto;
+  width: 70%;
+  height: 70%;
+  padding:1.5rem;
+  position: relative;
+  background-color: var(--modal-cor);
+  border-radius: .5rem;
+}
+
+.modal-content{
+  width: 80%;
+  height: auto;
+}
+
+.services-modal-info, .modal-info{
+  padding: 2rem;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
 .button-form:hover { 
   background-color: var(--primeira-cor-lighter-terc);
   color: var(--primeira-cor-lighter-seg);
@@ -951,23 +986,28 @@ button {
  gap: 3rem;
 }
 
-.services-modal-services {
+.services-modal-services{
   row-gap: 1rem;
 }
 
-.services-modal-service {
+
+.services-modal-service{
   font-size: var(--h3-font-size);
   display: flex;
 }
 
-.services-modal-title {
+.modal-products {
+  justify-content: center;
+}
+
+.services-modal-title, .modal-title {
   margin-bottom: var(--h3-font-size);
   font-size: var(--h2-font-size);
   color: var(--primeira-cor-alt);
   font-weight: var(--font-medium);
 }
 
-.services-modal-close {
+.services-modal-close, .modal-close {
   position: absolute;
   inset: 1rem 1rem auto auto;
   font-size: 2.5rem;
@@ -975,25 +1015,29 @@ button {
   cursor: pointer;
 }
 
-.services-modal-close:hover {
+.services-modal-close:hover, 
+.modal-close:hover{
   color: var(--primeira-cor-seg-detale);
 
 }
 
 
-.services-modal-icone {
+.services-modal-icone, .modal-icone {
   margin-right: var(--mb-0-25);
   font-weight: var(--font-medium);
-  color: var(--primeira-cor);
+  color: var(--primeira-cor-seg-detale);
 }
 
 /* Active Modal */
-.active-modal {
+.active-modal,
+.active-modal-products {
   opacity: 1;
   visibility: visible;
 }
 
-.services-button {
+
+.services-button,
+.search-button {
   cursor: pointer;
 }
 /*==================== PROJECT IN MIND ====================*/
@@ -1368,6 +1412,11 @@ input.error {
     height: auto;
   }
 
+  .modal-content{
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 1380px) and (min-width: 768px) {
@@ -1697,6 +1746,33 @@ input.error {
    flex-direction: column;
    gap: 1.5rem;
   }
+
+  .product-data-search {
+    padding-left: 3rem;
+    gap: .5rem;
+    width: 300px;
+  }
+  .modal-products {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-title {
+    margin-bottom: .5rem;
+  }
+
+  .modal-info {
+    padding: 2rem 2rem;
+    align-content: inherit;
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -1868,6 +1944,9 @@ input.error {
     width: 180%;
     position: absolute;
     inset: 0 0 0 -4rem
+  }
+  .aria-search-product {
+    width: 81%;
   }
 
   .footer{

@@ -150,6 +150,8 @@ a {
   
 }
 
+/*==================== SEÇÃO DE PESQUISA E CONTEUNO PRICIPAL ====================*/
+
 .product-section {
   padding: 2rem;
   margin: 0 auto;
@@ -159,35 +161,52 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 26rem;
+  gap: 30rem;
   align-items: center;
 }
-form {
-  width: 100%;
-  height: auto;
-}
-.products-search form {
-  margin: 3rem auto;
+
+.products-search {
+  margin: .5rem auto;
   display: flex;
-  width: 300px;
-  gap: .5rem;
-  height: 40px;
-  background-color: var(--body-cor);
+  gap: 2rem;
+  height: 50px;
   border-radius: 5px;
   z-index: 1;
 }
 
-.aria-search {
-  width: 90%;
-  height: 60%;
-  background-color: #ededed;
-  border: none;
-  border-radius: 5px;
+
+.products-search-title {
+  text-transform:  uppercase;
+  animation:  moveHorizontally 2s infinite linear; cursor: pointer; 
 }
 
-.icon-search {
-  color: var(--primeira-cor-terc);
+.icon-search  {
+  font-family: var(--title-font);
+  font-size: 1.4rem;
+}
+
+
+.button-icone-search { 
   font-size: 1.5rem;
+  color: var(--primeira-cor-seg-detale);
+  animation: colorChange 1s infinite alternate;
+  cursor: pointer; } 
+
+@keyframes colorChange { 
+  0% { 
+    color: #5b9221; text-shadow: 0 0 10px rgba(27, 118, 9, 0.5); 
+  } 100% {
+  color: var(--primeira-cor-terc);
+   text-shadow: 0 0 20px var(--primeira-cor-lighter-seg); 
+  }
+}
+
+
+@keyframes moveHorizontally { 0% { transform: translateX(0); } 50% { transform: translateX(30px); } 100% { transform: translateX(0); }
+
+}
+.search-form form {
+  display: flex;
 }
   
 @media screen and (max-width: 1500px) {
@@ -204,17 +223,18 @@ form {
     height: 100px;
     order: -1; /* Garante que este elemento apareça primeiro */
   }
+
   .aria-search {
-    width: 92%;
-    height: 55%;
+    width: 70%;
+    height: 40%;
     background-color: #ededed;
     border: none;
     border-radius: 5px;
   }
-  
+
   .icon-search {
   color: var(--primeira-cor-terc);
-  font-size: 1.1rem;
+  font-size: 1.7rem;
   } 
 
 }
@@ -226,7 +246,7 @@ form {
     display: flex;
     justify-content: center;
     align-self: center;
-    width: 70%;
+    width: 90%;
     height: 50px;
     order: -1; /* Garante que este elemento apareça primeiro */
   }
@@ -234,6 +254,9 @@ form {
     width: 100%;
   }
 }
+
+
+/*==================== SLIDES DE PROPDUTOS ====================*/
 .product-slide-section, .products-list{
   padding: 2rem;
 }
@@ -378,6 +401,8 @@ form {
     font-size: var(--h2-font-size);
   }
 }
+
+/*==================== CARD DOS PRODUTOS PRINCIPAIS ====================*/
 .card-emphasis-product {
   width: 100%;
   height: auto;
@@ -407,7 +432,7 @@ form {
   margin-top: 2rem;
   width: 100%;
   width: 100%;
-  z-index: 2;
+  z-index: 0;
   grid-template-columns:  1fr 1fr ; /* Ajuste o tamanho conforme necessário */ 
   width: 100%; height: 100%; 
 }
@@ -642,6 +667,7 @@ form {
   
 }
 
+
 @media screen and (max-width: 480px) {
   .console-war-content {
    padding: 1.5rem;
@@ -673,6 +699,8 @@ form {
   animation: floating-reverse 4s ease-in-out infinite;
 }
 
+
+/*==================== SEÇÃO BANNER ====================*/
 .banner-section {
   padding: 0;
   background: var(--cor-11);
@@ -751,3 +779,58 @@ form {
   }
 }
   
+
+/*==================== LISTA DE PRODUTOS AREA PESQUISAR ====================*/
+
+.list-product-register {
+  display: flex;
+  padding-bottom: 3rem;
+}
+
+.list-register-item {
+  padding: 2rem;
+  width: 500px;
+  border-bottom: solid 1px #000000;
+ grid-template-columns: 1fr 1fr ;
+ gap: 2rem;
+ justify-content: center;
+ align-items: center;
+}
+
+.list-product-item div { 
+ width: 400px
+}
+.list-register-item div img {
+  width: 60%;
+}
+
+.list-register-item span p {
+  padding: .5rem 0 .5rem 0;
+  font-size: .6rem;
+}
+
+.list-error-product {
+  display: flex;
+  gap: .5rem;
+  font-size: 1rem;
+  color: rgb(179, 6, 6);
+  font-family: var(--body-font);
+}
+
+.list-error-product p span {
+  color:var(--cor-10);
+  font-size: 1.1rem;
+  font-family: var(--title-font);
+}
+
+
+@media  screen and (max-width: 600px) {
+  .list-product-item div img{ 
+    width: 100%
+  }
+
+  .list-register-item {
+    width: 100%;
+    grid-template-columns:  1fr;
+  }
+}
