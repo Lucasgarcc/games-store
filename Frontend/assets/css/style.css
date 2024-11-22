@@ -952,7 +952,7 @@ button {
 }
 
 .aria-search-product {
-  
+
   width: 100%;
   height: 50%;
   border-radius: .2rem;
@@ -1074,6 +1074,7 @@ button {
   opacity: 1;
   visibility: visible;
 }
+
 
 
 .search-button {
@@ -1474,11 +1475,13 @@ input.error {
     align-items: center;
   }
 
+
   .search-button {
     width: 70%;
     gap: 2rem;
     height: 80%;
   }
+
 }
 
 @media (max-width: 1380px) and (min-width: 768px) {
@@ -2018,11 +2021,13 @@ input.error {
     width: 81%;
   }
 
+
   .search-button {
     width: 100%;
     gap: 2rem;
     height: 70%;
   }
+
 
   .footer{
     padding-top: 0rem;
