@@ -1,19 +1,3 @@
-// O token de autenticação deve ser inserido corretamente na string.
-
-// const NEON_API_KEY = 'seu_token_aqui';
-
-// fetch('https://games-store-aanh.onrender.com/products', {
-//   method: 'GET', 
-//   headers: {
-//     'Accept': 'application/json',
-//     'Authorization': `Bearer ${NEON_API_KEY}`,
-//     'Content-Type': 'application/json'
-//   }
-
-// })
-// .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(error => console.error('Erro na requisição:', error));
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.querySelector('#nav-menu'),
@@ -103,8 +87,30 @@ if (sectionsScroll.length) {
 }
 
 
+
+/*==================== ICONE DE SCROLL ====================*/
+
+window.addEventListener('load', function() {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  const bottomPosition = scrollIndicator.getAttribute('data-bottom');
+  
+  scrollIndicator.style.bottom = `${bottomPosition}px`;
+});
+
+window.addEventListener('scroll', () => {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (window.scrollY > 0) {
+      scrollIndicator.style.display = 'none';
+  } else {
+      scrollIndicator.style.display = 'block';
+  }
+});
+
+
 /*==================== GERENCIAR MODAL ====================*/
  
+
 const modalManage = document.querySelectorAll('.services-modal');
 const buttonManage = document.querySelectorAll('.services-button');
 const closeManage = document.querySelectorAll('.services-modal-close');
@@ -130,3 +136,22 @@ closeManage.forEach((closeButton, index) => {
 });
 
 
+
+const modalProduct = document.querySelector('.modal'); // Seleciona o modal
+const buttonProduct = document.querySelector('.search-button'); // Botão para abrir o modal
+const closeProduct = document.querySelector('.modal-close'); // Botão para fechar o modal
+
+const activeModalProduct = 'active-modal-products'; // Classe usada para ativar o modal
+
+// Verificar se os elementos existem antes de adicionar os eventos
+if (buttonProduct && modalProduct && closeProduct) {
+  buttonProduct.addEventListener('click', () => {
+    modalProduct.classList.add(activeModalProduct); // Adiciona a classe para mostrar o modal
+  });
+
+  closeProduct.addEventListener('click', () => {
+    modalProduct.classList.remove(activeModalProduct); // Remove a classe para esconder o modal
+  });
+} else {
+  console.warn('Alguns elementos do modal não foram encontrados no DOM.');
+}

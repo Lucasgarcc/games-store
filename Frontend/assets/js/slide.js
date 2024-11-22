@@ -15,7 +15,7 @@ carRight.onclick = () => {
   carSld.scrollLeft += getSlideWidth();
 };
 
-carLeft.onclick = function () {
+carLeft.onclick = () => {
   carSld.scrollLeft -= getSlideWidth();
 };
 
@@ -75,7 +75,7 @@ slides.forEach(slide => {
 });
 
 
-carSld.addEventListener('wheel', function(event) {
+carSld.addEventListener('wheel', (event) => {
   // Se o evento de rolagem for para baixo (roda para baixo)
   if (event.deltaY > 0) {
     // Move o carrossel para a direita
@@ -95,9 +95,10 @@ carSld.addEventListener('wheel', function(event) {
 /* ===================== SEGUNDO SLIDE =====================*/ 
 
 // Variáveis do segundo slide
-const productSlides = document.querySelector('.products-list-slides');
+
 const setaEsquerda = document.querySelector('.seta-esquerda');
 const setaDireita = document.querySelector('.seta-direita');
+const productSlides = document.querySelector('.products-list-slides');
 
 // Atualiza a visibilidade das setas
 const atualizarSetas = () => {

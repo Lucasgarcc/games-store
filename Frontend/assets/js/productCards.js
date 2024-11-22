@@ -91,8 +91,86 @@ slideProducts.forEach((item) => {
 });
 
 
+/*==================== AREA DE PESQUISA DE PRODUTOS ====================*/
 
+function selectorTag(element) {
+  const el = document.querySelector(element);
 
+  if (el) {
+    return el;
+  } else {
+    console.warn(`Elemento com o seletor '${element}' não encontrado.`);
+    return null;
+  }
+}
 
+const searchProduct = selectorTag('#aria-search');
+const products = document.querySelectorAll('[data-products] li');
+
+// Contêiner para exibir os resultados
+const searchResultsContainer = document.querySelector('.list-product-register .list-container-register');
+
+const listProducts = [];
+
+if (searchProduct && searchResultsContainer) {
+  searchProduct.addEventListener('input', (event) => {
+    const input = event.target.value.trim().toLowerCase();
+
+    // Limpa os resultados anteriores
+    searchResultsContainer.innerHTML = '';
+    listProducts.length = 0; // Limpa a lista dinâmica de produtos
+
+    let productFound = false;
+
+    products.forEach((product) => {
+      const productName = product.querySelector('.product-name').textContent.toLowerCase();
+      const productValue = product.querySelector('.product-price').textContent;
+      const productImage = product.querySelector('img').src;
+
+      if (productName.includes(input)) {
+        productFound = true;
+
+        // Verifica se o produto já está na lista dinâmica
+        const existingProduct = listProducts.find((p) => p.name === productName);
+        if (!existingProduct) {
+          const productData = {
+            name: productName,
+            value: productValue,
+            image: productImage,
+          };
+          listProducts.push(productData);
+
+          // Cria o item da lista e adiciona ao contêiner
+          const listItem = document.createElement('li');
+          listItem.classList.add('list-register-item', 'grid');
+          listItem.innerHTML = `
+            <div>
+              <img src="${productData.image}" alt="${productData.name}">
+            </div>
+            <div>
+              <h3 class="cor-9">${productData.name}</h3>
+              <span class="cor-7">${productData.value}</span>
+              <span class="cor-10">
+                <p>${productData.description || 'Descrição indisponível.'}</p>
+              </span>
+            </div>
+          `;
+          searchResultsContainer.appendChild(listItem);
+        }
+      }
+    });
+
+    if (!productFound) {
+      // Exibe uma mensagem de "Nenhum produto encontrado"
+      searchResultsContainer.innerHTML = `
+        
+          <div class="list-error-product">
+            <p>Nenhum produto encontrado para: <span>"${input}"</span></p>
+            <i class="uil uil-exclamation-octagon"></i>
+          </div>
+      `;
+    }
+  });
+}
 
 
