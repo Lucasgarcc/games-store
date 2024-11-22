@@ -7,7 +7,7 @@ const server = fastify();
 
 // Configurar CORS
 server.register(fastifyCors, {
-  origin: 'https://games-store-garc.vercel.app', // Permite apenas esse domínio
+  origin: '*', // Permite apenas esse domínio
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
   credentials: true, // Permite envio de cookies (se necessário)
