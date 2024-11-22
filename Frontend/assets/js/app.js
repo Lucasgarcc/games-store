@@ -103,6 +103,25 @@ if (sectionsScroll.length) {
 }
 
 
+window.addEventListener('load', function() {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  const bottomPosition = scrollIndicator.getAttribute('data-bottom');
+  
+  scrollIndicator.style.bottom = `${bottomPosition}px`;
+});
+
+window.addEventListener('scroll', function() {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (window.scrollY > 0) {
+      scrollIndicator.style.display = 'none';
+  } else {
+      scrollIndicator.style.display = 'block';
+  }
+});
+
+
+
 /*==================== GERENCIAR MODAL ====================*/
  
 
