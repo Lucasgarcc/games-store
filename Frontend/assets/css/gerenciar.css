@@ -197,10 +197,11 @@ a {
   font-family: var(--title-font);
   color: var(--cor-2);
   font-size: 1rem;
-  
+} 
 .icon-search  {
   font-family: var(--title-font);
   font-size: 1.4rem;
+  color: var(--cor-2);
 }
 
 
@@ -243,14 +244,9 @@ a {
  color: #2E6410;
 }
 
-
-    color: #5b9221; text-shadow: 0 0 10px rgba(27, 118, 9, 0.5); 
-  } 100% {
-  color: var(--primeira-cor-terc);
-   text-shadow: 0 0 20px var(--primeira-cor-lighter-seg); 
-  }
+.search-form form {
+  display: flex;
 }
-
 
 @keyframes moveHorizontally {
   0% 
@@ -291,7 +287,6 @@ a {
   }
 
   .icon-search {
-  color: var(--primeira-cor-terc);
   font-size: 1.7rem;
   } 
   
