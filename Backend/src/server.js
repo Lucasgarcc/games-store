@@ -6,9 +6,12 @@ import { DBPostgres } from './db-postgres.js';
 const server = fastify();
 
 // Configurar CORS
-// server.register(fastifyCors, {
-//   origin: 'http://localhost:3000', // Ajuste a porta conforme necessário
-// });
+server.register(fastifyCors, {
+  origin: 'https://games-store-garc.vercel.app', // Permite apenas esse domínio
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+  credentials: true, // Permite envio de cookies (se necessário)
+});
 
 // banco de dados criando uma instancia
 const database = new DBPostgres();
