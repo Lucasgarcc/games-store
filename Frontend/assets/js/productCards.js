@@ -91,6 +91,7 @@ slideProducts.forEach((item) => {
 });
 
 
+/*==================== AREA DE PESQUISA DE PRODUTOS ====================*/
 
 function selectorTag(element) {
   const el = document.querySelector(element);
@@ -171,7 +172,3 @@ if (searchProduct && searchResultsContainer) {
     }
   });
 }
-
-
-
-

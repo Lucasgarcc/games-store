@@ -1,19 +1,3 @@
-// O token de autenticação deve ser inserido corretamente na string.
-
-// const NEON_API_KEY = 'seu_token_aqui';
-
-// fetch('https://games-store-aanh.onrender.com/products', {
-//   method: 'GET', 
-//   headers: {
-//     'Accept': 'application/json',
-//     'Authorization': `Bearer ${NEON_API_KEY}`,
-//     'Content-Type': 'application/json'
-//   }
-
-// })
-// .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(error => console.error('Erro na requisição:', error));
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.querySelector('#nav-menu'),
@@ -103,6 +87,9 @@ if (sectionsScroll.length) {
 }
 
 
+
+/*==================== ICONE DE SCROLL ====================*/
+
 window.addEventListener('load', function() {
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const bottomPosition = scrollIndicator.getAttribute('data-bottom');
@@ -110,7 +97,7 @@ window.addEventListener('load', function() {
   scrollIndicator.style.bottom = `${bottomPosition}px`;
 });
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', () => {
   const scrollIndicator = document.querySelector('.scroll-indicator');
   
   if (window.scrollY > 0) {
@@ -119,7 +106,6 @@ window.addEventListener('scroll', function() {
       scrollIndicator.style.display = 'block';
   }
 });
-
 
 
 /*==================== GERENCIAR MODAL ====================*/
