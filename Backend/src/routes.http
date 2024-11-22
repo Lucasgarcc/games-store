@@ -1,0 +1,29 @@
+POST http://127.0.0.1:3333/products
+Content-Type: application/json
+
+{
+  "name": "xbox",
+  "value": 1000,
+  "image": "https://cdn.pixabay.com/photo/2016/02/14/21/09/xbox-1200296_1280.jpg"
+}
+
+###
+
+GET https://games-store-aanh.onrender.com/products
+
+
+###
+
+PUT https://games-store-aanh.onrender.com/products/8e9111b0-87b8-4db9-9e61-0ce189203e06
+Content-Type: application/json
+
+{
+  "name": "Playstaion 1",
+  "value": 1800.00,
+  "image": "https://cdn.pixabay.com/photo/2017/04/04/18/12/video-game-console-2202613_1280.jpg"
+}
+
+
+###
+
+DELETE  http://localhost:3333/127.0.0.1:3333/products/
