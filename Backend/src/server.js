@@ -1,5 +1,5 @@
 import { fastify } from 'fastify';
-//import fastifyCors from '@fastify/cors';
+import fastifyCors from '@fastify/cors';
 import { DBPostgres } from './db-postgres.js';
 
 // Criando uma instância do servidor Fastify
