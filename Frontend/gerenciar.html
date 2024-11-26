@@ -151,7 +151,7 @@
                             <label for="image">Imagem:</label> 
                             <input type="url" id="image" name="image" accept="image/*" required> 
                           </div> 
-                          <button class="button-form" type="submit">Enviar</button>
+                          <button class="button-form" type="submit" id="send-data">Enviar</button>
                         </form>
                       </div>
                     </div>
@@ -179,6 +179,10 @@
                         </div>
                         <form id="productForm"> 
                           <div class="product-data">
+                            <label for="code">Code [id]:</label> 
+                            <input type="text" id="code" name="code" required> 
+                         </div> 
+                          <div class="product-data">
                              <label for="name">Nome do Produto:</label> <input type="text" id="name" name="name" required> 
                           </div> 
                           <div class="product-data"> 
@@ -190,8 +194,8 @@
                             <input type="url" id="image" name="image" accept="image/*" required> 
                           </div> 
                           <div class="button-content-form">
-                            <button class="button-form" type="submit">Alterar</button>
-                          <button class="button-form" type="submit">Deletar</button>
+                            <button class="button-form" type="submit" id="update-data">Alterar</button>
+                          <button class="button-form" type="submit" id="delete-data">Deletar</button>
                           </div>
                         </form>
                     </div>
@@ -219,7 +223,7 @@
                 <!-- Repetir os itens para simular mais de 100 produtos -->
                 <li>
                   <a href="#">
-                    <img src="./assets/img/images/super-nitendo-cd.png" alt="Bicicleta 1">
+                    <img src="./assets/img/images/super-nitendo-cd.png" alt="console">
                     <h3 class="product-name">Super Nitendo</h3>
                     <span class="product-price">R$ 1999</span>
                     <p class="prouct-description">
@@ -231,7 +235,7 @@
                 </li>
                 <li>
                   <a href="#">
-                    <img src="./assets/img/images/sega-16-bit-cd.png" alt="Bicicleta 2">
+                    <img src="./assets/img/images/sega-16-bit-cd.png" alt="console">
                     <h3 class="product-name">Sega 16</h3>
                     <span class="product-price">R$ 1499</span>
                     <p class="product-description">Sega Mega Drive/Genesis
@@ -243,7 +247,7 @@
 
                 <li>
                   <a href="#">
-                    <img src="./assets/img/images/ps1-card.png" alt="Bicicleta 2">
+                    <img src="./assets/img/images/ps1-card.png" alt="console">
                     <h3 class="product-name">PlayStation 1</h3>
                     <span class="product-price">R$ 2499</span>
                     <p class="product-description">
