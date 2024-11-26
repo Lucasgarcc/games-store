@@ -1,5 +1,5 @@
 import { fastify } from 'fastify';
-//import fastifyCors from '@fastify/cors';
+import fastifyCors from '@fastify/cors';
 import { DBPostgres } from './db-postgres.js';
 
 // Criando uma instância do servidor Fastify
@@ -7,7 +7,7 @@ const server = fastify();
 
 // Configurar CORS
 server.register(fastifyCors, {
-  origin: 'https://games-store-garc.vercel.app', // Permite apenas esse domínio
+  origin: '*', // Permite apenas esse domínio
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
   credentials: true, // Permite envio de cookies (se necessário)
