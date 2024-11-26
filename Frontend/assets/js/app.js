@@ -155,3 +155,4 @@ if (buttonProduct && modalProduct && closeProduct) {
 } else {
   console.warn('Alguns elementos do modal não foram encontrados no DOM.');
 }
+
