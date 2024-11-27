@@ -2035,6 +2035,9 @@ input.error {
     width: 81%;
   }
 
+  .button {
+    width: 100%;
+  }
 
   .search-button {
     width: 100%;

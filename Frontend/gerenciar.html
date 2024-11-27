@@ -141,15 +141,18 @@
                         </div>
                         <form id="productForm"> 
                           <div class="product-data">
-                             <label for="name">Nome do Produto:</label> <input type="text" id="name" name="name" required> 
+                             <label for="name">Nome do Produto:</label> <input type="text" id="name" name="name" required  placeholder="Digite o nome do produto"> 
                           </div> 
                           <div class="product-data"> 
                             <label for="value">Valor:</label> 
-                            <input type="text" id="value" name="value" required>
+                            <input type="text" id="value" name="value" required placeholder="Digite valor do produto 1000.00">
                           </div> 
                           <div class="product-data"> 
                             <label for="image">Imagem:</label> 
-                            <input type="url" id="image" name="image" accept="image/*" required> 
+                            <input type="url" id="image" name="image" name="image" accept="image/*" required placeholder="Copie link da imagem e cole aqui exemplo 'https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c357.png' "/>
+
+                            <a class="button " href="https://www.stickpng.com/cat/games/vintage-gear?page=1" target="_blank">Site Referência para images</a>
+                            
                           </div> 
                           <button class="button-form" type="submit" id="send-data">Enviar</button>
                         </form>
