@@ -106,72 +106,93 @@ function selectorTag(element) {
 
 const searchProduct = selectorTag('#aria-search');
 const products = document.querySelectorAll('[data-products] li');
-
-// Contêiner para exibir os resultados
 const searchResultsContainer = document.querySelector('.list-product-register .list-container-register');
 
-const listProducts = [];
+async function initializeSearch() {
+  const listProducts = [];
 
-if (searchProduct && searchResultsContainer) {
-  searchProduct.addEventListener('input', (event) => {
-    const input = event.target.value.trim().toLowerCase();
+  // Adiciona os produtos locais à lista
+  products.forEach((product) => {
+    const name = product.querySelector('.product-name').textContent.toLowerCase();
+    const value = product.querySelector('.product-price').textContent;
+    const image = product.querySelector('img').src;
 
-    // Limpa os resultados anteriores
-    searchResultsContainer.innerHTML = '';
-    listProducts.length = 0; // Limpa a lista dinâmica de produtos
+    listProducts.push({
+      id: null,
+      name,
+      value,
+      image,
+      description: 'Descrição indisponível.',
+    });
+  });
 
-    let productFound = false;
+  // Busca os produtos da API e os adiciona à lista
+  try {
+    const response = await fetch('https://games-store-aanh.onrender.com/products');
+    const dataAPI = await response.json();
 
-    products.forEach((product) => {
-      const productName = product.querySelector('.product-name').textContent.toLowerCase();
-      const productValue = product.querySelector('.product-price').textContent;
-      const productImage = product.querySelector('img').src;
+    dataAPI.forEach((product) => {
+      listProducts.push({
+        id: product.id,
+        name: product.name.toLowerCase(),
+        value: product.value,
+        image: product.image,
+        description: product.description || 'Descrição indisponível.',
+      });
+    });
+  } catch (error) {
+    console.error('Erro ao obter produtos da API:', error);
+  }
 
-      if (productName.includes(input)) {
-        productFound = true;
+  // Configura o evento de pesquisa
+  if (searchProduct) {
+    searchProduct.addEventListener('input', (event) => {
+      const input = event.target.value.trim().toLowerCase();
 
-        // Verifica se o produto já está na lista dinâmica
-        const existingProduct = listProducts.find((p) => p.name === productName);
-        if (!existingProduct) {
-          const productData = {
-            name: productName,
-            value: productValue,
-            image: productImage,
-          };
-          listProducts.push(productData);
+      // Limpa os resultados anteriores
+      searchResultsContainer.innerHTML = '';
+      let productFound = false;
 
-          // Cria o item da lista e adiciona ao contêiner
+      // Filtra e renderiza os produtos que correspondem à pesquisa
+      listProducts.forEach((product) => {
+        if (product.name.includes(input)) {
+          productFound = true;
+
           const listItem = document.createElement('li');
           listItem.classList.add('list-register-item', 'grid');
           listItem.innerHTML = `
             <div>
-              <img src="${productData.image}" alt="${productData.name}">
+              <img src="${product.image}" alt="${product.name}">
             </div>
             <div>
-              <h3 class="cor-9">${productData.name}</h3>
-              <span class="cor-7">${productData.value}</span>
+              <h3 class="cor-10">Code: </h3>
+             <span class="cor-7" >${product.id || 'Estático' }</span> 
+             
+              <h3 class="cor-9">${product.name}</h3>
+              <span class="cor-7">${product.value}</span>
               <span class="cor-10">
-                <p>${productData.description || 'Descrição indisponível.'}</p>
+                <p>${product.description}</p>
               </span>
             </div>
           `;
           searchResultsContainer.appendChild(listItem);
         }
-      }
-    });
+      });
 
-    if (!productFound) {
-      // Exibe uma mensagem de "Nenhum produto encontrado"
-      searchResultsContainer.innerHTML = `
-        
+      // Exibe mensagem se nenhum produto for encontrado
+      if (!productFound) {
+        searchResultsContainer.innerHTML = `
           <div class="list-error-product">
             <p>Nenhum produto encontrado para: <span>"${input}"</span></p>
             <i class="uil uil-exclamation-octagon"></i>
           </div>
-      `;
-    }
-  });
+        `;
+      }
+    });
+  }
 }
+
+initializeSearch();
 
 
 /*==================== CONFIGURAÇÃO DE VARIÁVEIS ====================*/
@@ -228,27 +249,6 @@ async function addProductList(product) {
    const slideProducts = document.querySelector('.products-list-slides');
   slideProducts.appendChild(createItem);
 }
-
-
-
-/*==================== GET: LISTAR PRODUTOS ====================*/
-
-// Função para obter a lista de produtos da API
-async function getProducts() {
-  try {
-    // Faz uma requisição à API para obter a lista de produtos
-    const products = await api();
-     
-    // Verifica se há produtos na resposta e os adiciona à lista de produtos no DOM.
-    // Caso contrário, exibe um aviso no console.
-    (products && products.length) ? products.forEach(addProductList) 
-    : console.warn('Nenhum produto encontrado!');
-    
-  }  catch (error) {
-    console.error('Erro ao obter produtos:', error);
-  }
-}
-
 
 
 /*==================== GET: LISTAR PRODUTOS ====================*/
@@ -426,11 +426,12 @@ async function deleteProduct(id) {
 
 
 // Botão de deletar produto (DELETE)
-const deleteButton = document.querySelector('#delete-data');
+const deleteButton = selectorTag('#delete-data');
+
 deleteButton.addEventListener('click', async (event) => {
   event.preventDefault();
 
-  const id = document.querySelector('#code').value.trim();
+  const id = selectorTag('#code').value.trim();
 
   console.log(`Tentativa de exclusão do produto com ID: ${id}`);
 
@@ -449,3 +450,19 @@ deleteButton.addEventListener('click', async (event) => {
 
 /*==================== INICIALIZAÇÃO ====================*/
 getProducts();
+
+/*==================== SCROLL BOTÂO PESQUISAR ATÈ MODAL  ====================*/
+
+selectorTag('.search-button').addEventListener('click', (event) => {
+  event.preventDefault(); // Impede o comportamento padrão do link
+
+  const modalElement = selectorTag('.modal-content');
+  if (modalElement) {
+    modalElement.scrollIntoView({
+      behavior: 'smooth', // Rola suavemente
+      block: 'start', // Alinha ao topo do elemento
+    });
+  } else {
+    console.warn('Elemento com a classe ".modal" não encontrado.');
+  }
+});

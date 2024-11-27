@@ -69,7 +69,7 @@
                   <i class="uil uil-search icon-search"></i>
               </a>
               </div>
-              <div class="modal">
+              <div class="modal" id="modal">
                 <div class="modal-content">
                   <div class="modal-info">
                     <h4 class="modal-title"><i class="uil uil-shopping-bag modal-icone"></i>
@@ -180,19 +180,22 @@
                       <form id="productForm">
                         <div class="product-data">
                           <label for="code">Code [id]:</label>
-                          <input type="text" id="code" name="code" required />
+                          <input type="text" id="code" name="code" required placeholder="Digite o Código ID do produto" />
                         </div>
                         <div class="product-data">
                           <label for="name">Nome do Produto:</label>
-                          <input type="text" id="name-update" name="name" required />
+                          <input type="text" id="name-update" name="name" required  placeholder="Digite o nome do produto"/>
                         </div>
                         <div class="product-data">
                           <label for="value">Valor:</label>
-                          <input type="text" id="value-update" name="value" required />
+                          <input type="text" id="value-update" name="value" required placeholder="Digite valor do produto 1000.00" />
                         </div>
                         <div class="product-data">
                           <label for="image">Imagem:</label>
-                          <input type="url" id="image-update" name="image" accept="image/*" required />
+                          <input type="url" id="image-update" name="image" accept="image/*" required placeholder="Copie link da imagem e cole aqui exemplo 'https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c357.png' "/>
+
+                          <a class="button " href="https://www.stickpng.com/cat/games/vintage-gear?page=1" target="_blank">Site Referência para images</a>
+                          
                         </div>
                         <div class="button-content-form">
                           <button class="button-form" type="button" id="update-data">Alterar</button>
@@ -210,7 +213,7 @@
     </section>
 
     <section class="product-slide-section section" id="slides">
-      <article class="products-list "  data-anima="scroll" data-anima="rigth">
+      <article class="product-list "  data-anima="scroll" data-anima="rigth">
       <div class="carousel-container">
         <h2 class="product-subtitle">Escolha o seu<span class="cor-p1">.</span></h2>
         <div id="carrusel-slides" class="carousel-slides">
@@ -224,7 +227,7 @@
                 <li>
                   <a href="#">
                     <img src="./assets/img/images/super-nitendo-cd.png" alt="console">
-                    <h3 class="product-name">Super Nitendo</h3>
+                    <h3 class="product-name">Super Nintendo</h3>
                     <span class="product-price">R$ 1999</span>
                     <p class="prouct-description">
                       Super Nintendo Entertainment System (SNES)

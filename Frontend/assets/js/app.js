@@ -58,101 +58,96 @@ menuContent.forEach(menu =>  {
 });
 
 
+/*==================== ANIMA SCROLL ====================*/
 
 const sectionsScroll = document.querySelectorAll('[data-anima="scroll"]');
 const windowView = window.innerHeight * 0.5;
-const active  = 'active';
+const active = 'active';
+const modalProduct = document.querySelector('.modal'); // Seleciona o modal
+const activeModalProduct = 'active-modal-products'; // Classe usada para indicar que o modal está ativo
 
-// variavel pega valor do window html atraves da prorpriedade
-// innerHeight multiplicado por 60% da tela.
+// Função para animar as sections
+function animaScroll() {
+  // Verificar se o modal está ativo
+  if (modalProduct && modalProduct.classList.contains(activeModalProduct)) {
+    return; // Interromper a animação se o modal estiver ativo
+  }
 
-function animaScroll () {
   sectionsScroll.forEach((section) => {
     const sectionTop = section.getBoundingClientRect().top;
-    const isSectionVIsible = sectionTop - windowView <= 0;
-  // concatena a variavel -[section] a o metodo que pega,
+    const isSectionVisible = sectionTop - windowView <= 0;
 
-    if (isSectionVIsible) {
-      // varifica se valor do scroll da pagina for maior que zero.
-        section.classList.add(active);
-    } else  {
+    if (isSectionVisible) {
+      section.classList.add(active);
+    } else {
       section.classList.remove(active);
     }
   });
 }
 
+// Verificar se há sections para animar
 if (sectionsScroll.length) {
   animaScroll();
   window.addEventListener('scroll', animaScroll);
 }
 
-
-
 /*==================== ICONE DE SCROLL ====================*/
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const bottomPosition = scrollIndicator.getAttribute('data-bottom');
-  
+
   scrollIndicator.style.bottom = `${bottomPosition}px`;
 });
 
 window.addEventListener('scroll', () => {
   const scrollIndicator = document.querySelector('.scroll-indicator');
-  
+
   if (window.scrollY > 0) {
-      scrollIndicator.style.display = 'none';
+    scrollIndicator.style.display = 'none';
   } else {
-      scrollIndicator.style.display = 'block';
+    scrollIndicator.style.display = 'block';
   }
 });
 
-
 /*==================== GERENCIAR MODAL ====================*/
- 
 
 const modalManage = document.querySelectorAll('.services-modal');
 const buttonManage = document.querySelectorAll('.services-button');
 const closeManage = document.querySelectorAll('.services-modal-close');
-
-
-const activeModal = 'active-modal'
-
+const activeModal = 'active-modal';
 
 buttonManage.forEach((button, i) => {
   button.addEventListener('click', () => {
     if (modalManage[i]) {
       modalManage[i].classList.add(activeModal);
-    } 
-  })
-})
+    }
+  });
+});
 
 closeManage.forEach((closeButton, index) => {
   closeButton.addEventListener('click', () => {
-    if (modalManage[index]) { // Verificar se o modal correspondente existe
+    if (modalManage[index]) {
       modalManage[index].classList.remove(activeModal);
     }
   });
 });
 
-
-
-const modalProduct = document.querySelector('.modal'); // Seleciona o modal
+// Gerenciar o modal e esconder o container
+const container = document.querySelector('.product-slide-section');
 const buttonProduct = document.querySelector('.search-button'); // Botão para abrir o modal
 const closeProduct = document.querySelector('.modal-close'); // Botão para fechar o modal
 
-const activeModalProduct = 'active-modal-products'; // Classe usada para ativar o modal
-
-// Verificar se os elementos existem antes de adicionar os eventos
 if (buttonProduct && modalProduct && closeProduct) {
   buttonProduct.addEventListener('click', () => {
-    modalProduct.classList.add(activeModalProduct); // Adiciona a classe para mostrar o modal
+    modalProduct.classList.add(activeModalProduct);
+    container.style.display = 'none'; // Esconde o container
   });
 
   closeProduct.addEventListener('click', () => {
-    modalProduct.classList.remove(activeModalProduct); // Remove a classe para esconder o modal
+    modalProduct.classList.remove(activeModalProduct);
+    container.style.display = 'block'; // Mostra o container novamente
   });
 } else {
   console.warn('Alguns elementos do modal não foram encontrados no DOM.');
 }
-

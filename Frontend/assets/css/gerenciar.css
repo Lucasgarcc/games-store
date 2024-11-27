@@ -310,13 +310,22 @@ a {
 
 
 /*==================== SLIDES DE PROPDUTOS ====================*/
+
+
 .product-slide-section, .products-list{
   padding: 2rem;
+  padding-bottom: 5rem;
+}
+
+ .product-list{
+  position: relative;
+  z-index: 1;
 }
 
 .products-list-container {
   padding-top: 60px;
   padding-bottom: 140px;
+  z-index: 0;
 }
 
 .products-list h2 {
@@ -422,7 +431,7 @@ a {
   padding: 10px;
   cursor: pointer;
   border-radius: 50%;
-  z-index: 10;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -567,7 +576,7 @@ a {
     padding: 10px;
     cursor: pointer;
     border-radius: 50%;
-    z-index: 10;
+    z-index: 0;
     display: none;
   }
 }
@@ -837,6 +846,9 @@ a {
 /*==================== LISTA DE PRODUTOS AREA PESQUISAR ====================*/
 
 .list-product-register {
+
+  position: relative;
+  z-index: 2;
   display: flex;
   padding-bottom: 3rem;
 }
@@ -845,10 +857,10 @@ a {
   padding: 2rem;
   width: 500px;
   border-bottom: solid 1px #000000;
- grid-template-columns: 1fr 1fr ;
- gap: 2rem;
- justify-content: center;
- align-items: center;
+  grid-template-columns: 1fr 1fr ;
+  gap: 2rem;
+  justify-content: center;
+   align-items: center;
 }
 
 .list-product-item div { 
@@ -870,6 +882,8 @@ a {
   color: rgb(179, 6, 6);
   font-family: var(--body-font);
 }
+
+
 
 .list-error-product p span {
   color:var(--cor-10);
