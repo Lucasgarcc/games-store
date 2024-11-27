@@ -106,72 +106,94 @@ function selectorTag(element) {
 
 const searchProduct = selectorTag('#aria-search');
 const products = document.querySelectorAll('[data-products] li');
-
-// Contêiner para exibir os resultados
 const searchResultsContainer = document.querySelector('.list-product-register .list-container-register');
 
-const listProducts = [];
+async function initializeSearch() {
+  const listProducts = [];
 
-if (searchProduct && searchResultsContainer) {
-  searchProduct.addEventListener('input', (event) => {
-    const input = event.target.value.trim().toLowerCase();
+  // Adiciona os produtos locais à lista
+  products.forEach((product) => {
+    const name = product.querySelector('.product-name').textContent.toLowerCase();
+    const value = product.querySelector('.product-price').textContent;
+    const image = product.querySelector('img').src;
 
-    // Limpa os resultados anteriores
-    searchResultsContainer.innerHTML = '';
-    listProducts.length = 0; // Limpa a lista dinâmica de produtos
+    listProducts.push({
+      id: null,
+      name,
+      value,
+      image,
+      description: 'Descrição indisponível.',
+    });
+  });
 
-    let productFound = false;
+  // Busca os produtos da API e os adiciona à lista
+  try {
+    const response = await fetch('https://games-store-aanh.onrender.com/products');
+    const dataAPI = await response.json();
 
-    products.forEach((product) => {
-      const productName = product.querySelector('.product-name').textContent.toLowerCase();
-      const productValue = product.querySelector('.product-price').textContent;
-      const productImage = product.querySelector('img').src;
+    dataAPI.forEach((product) => {
+      listProducts.push({
+        id: product.id,
+        name: product.name.toLowerCase(),
+        value: product.value,
+        image: product.image,
+        description: product.description || 'Descrição indisponível.',
+      });
+    });
+  } catch (error) {
+    console.error('Erro ao obter produtos da API:', error);
+  }
 
-      if (productName.includes(input)) {
-        productFound = true;
+  // Configura o evento de pesquisa
+  if (searchProduct) {
+    searchProduct.addEventListener('input', (event) => {
+      const input = event.target.value.trim().toLowerCase();
 
-        // Verifica se o produto já está na lista dinâmica
-        const existingProduct = listProducts.find((p) => p.name === productName);
-        if (!existingProduct) {
-          const productData = {
-            name: productName,
-            value: productValue,
-            image: productImage,
-          };
-          listProducts.push(productData);
+      // Limpa os resultados anteriores
+      searchResultsContainer.innerHTML = '';
+      let productFound = false;
 
-          // Cria o item da lista e adiciona ao contêiner
+      // Filtra e renderiza os produtos que correspondem à pesquisa
+      listProducts.forEach((product) => {
+        if (product.name.includes(input)) {
+          productFound = true;
+
           const listItem = document.createElement('li');
           listItem.classList.add('list-register-item', 'grid');
           listItem.innerHTML = `
             <div>
-              <img src="${productData.image}" alt="${productData.name}">
+              <img src="${product.image}" alt="${product.name}">
             </div>
             <div>
-              <h3 class="cor-9">${productData.name}</h3>
-              <span class="cor-7">${productData.value}</span>
+              <h3 class="cor-10">Code: </h3>
+             <span class="cor-7" >${product.id || 'Estático' }</span> 
+             
+              <h3 class="cor-9">${product.name}</h3>
+              <span class="cor-7">${product.value}</span>
               <span class="cor-10">
-                <p>${productData.description || 'Descrição indisponível.'}</p>
+                <p>${product.description}</p>
               </span>
             </div>
           `;
           searchResultsContainer.appendChild(listItem);
         }
-      }
-    });
+      });
 
-    if (!productFound) {
-      // Exibe uma mensagem de "Nenhum produto encontrado"
-      searchResultsContainer.innerHTML = `
-        
+      // Exibe mensagem se nenhum produto for encontrado
+      if (!productFound) {
+        searchResultsContainer.innerHTML = `
           <div class="list-error-product">
             <p>Nenhum produto encontrado para: <span>"${input}"</span></p>
             <i class="uil uil-exclamation-octagon"></i>
           </div>
-      `;
-    }
-  });
+        `;
+      }
+    });
+  }
 }
+
+initializeSearch();
+
 
 /*==================== CONFIGURAÇÃO DE VARIÁVEIS ====================*/
 const url = 'https://games-store-aanh.onrender.com/products';
@@ -229,60 +251,6 @@ async function addProductList(product) {
 }
 
 
-
-/*==================== GET: LISTAR PRODUTOS ====================*/
-
-// Função para obter a lista de produtos da API
-async function getProducts() {
-  try {
-    // Faz uma requisição à API para obter a lista de produtos
-    const products = await api();
-     
-    // Verifica se há produtos na resposta e os adiciona à lista de produtos no DOM.
-    // Caso contrário, exibe um aviso no console.
-    (products && products.length) ? products.forEach(addProductList) 
-    : console.warn('Nenhum produto encontrado!');
-    
-  }  catch (error) {
-    console.error('Erro ao obter produtos:', error);
-  }
-}
-
-// Função para remover o fundo da imagem do produto
-async function removeBackgroundAndDisplay(productImageUrl, createItem) {
-  try {
-    // Faz a requisição à API Picwish para remover o fundo da imagem
-    const response = await fetch('https://api.picwish.com/v1/remove-background', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        image_url: productImageUrl,  // A URL da imagem do produto
-      }),
-    });
-
-    // Verifica se a resposta foi bem-sucedida
-    if (!response.ok) {
-      throw new Error('Erro ao processar a imagem');
-    }
-
-    // Converte a resposta para um blob (imagem)
-    const blob = await response.blob();
-
-    // Cria um URL a partir do blob para ser usado como src da imagem
-    const url = URL.createObjectURL(blob);
-
-    // Encontra a tag img dentro do item do produto e atualiza seu src com a imagem sem fundo
-    const img = createItem.querySelector('img');
-    img.src = url;
-
-  } catch (error) {
-    console.error('Erro na requisição para remover o fundo:', error);
-  }
-}
-
-
 /*==================== GET: LISTAR PRODUTOS ====================*/
 
 // Função para obter a lista de produtos da API
@@ -320,8 +288,8 @@ async function createProduct(name, value, image) {
 }
 
 // Botão de cadastrar produto (POST)
-const sendButton = document.querySelector('#send-data');
-console.log(sendButton)
+const sendButton = selectorTag('#send-data');
+
 // Adiciona o evento de clique ao botão
 sendButton.addEventListener('click', async (event) => {
   // Impede o comportamento padrão do evento (caso o botão seja um link, por exemplo)
@@ -359,70 +327,83 @@ sendButton.addEventListener('click', async (event) => {
 // Função para atualizar um produto (PUT)
 async function updateProduct(id, updateData) {
   try {
-    // Faz uma requisição à API para atualizar o produto com o id fornecido
-    const updateResp = await api(`/${id}`, {
+    // Envia a requisição para atualizar o produto
+    const updatedProduct = await api(`/${id}`, {
       method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updateData),
     });
 
-    // Exibe no console a resposta da API se o produto for atualizado com sucesso
-    console.log(`Produto atualizado com sucesso:`, updateResp);
-
-    const product = document.querySelector(`[data-id="${id}"]`);
-
-    // Captura os valores dos campos do modal.
-    // Atualiza os valores exibidos no DOM com os dados do produto atualizado
-    if (product) {
-      product.querySelector('.product-name').textContent = updateData.name;
-      product.querySelector('.product-price').textContent = `R$ ${updateData.value.toFixed(2)}`;
-      product.querySelector('img').src = updateData.image;
+    if (!updatedProduct) {
+      console.error('Erro: Não foi possível atualizar o produto.');
+      return;
     }
 
+    console.log('Produto atualizado com sucesso:', updatedProduct);
+
+    // Atualiza os valores na DOM se o produto existir
+    const productElement = document.querySelector(`[data-id="${id}"]`);
+    if (productElement) {
+      productElement.querySelector('.product-name').textContent = updatedProduct.name;
+      productElement.querySelector('.product-price').textContent = updatedProduct.value;
+      productElement.querySelector('img').src = updatedProduct.image;
+    } else {
+      console.warn(`Produto com ID ${id} não encontrado no DOM para atualização.`);
+    }
+
+    return updatedProduct;
   } catch (error) {
-     // Exibe um erro no console se houver falha na atualização do produto
     console.error('Erro ao atualizar produto:', error.message);
   }
 }
 
-// Botão de Atualização de produto (PUT)
-const updateButton = document.querySelector('#update-data');
+// Evento do botão de atualização
+const updateButton = selectorTag('#update-data');
 
 // Adiciona o evento de clique ao botão
 updateButton.addEventListener('click', async (event) => {
-  // Impede o comportamento padrão do evento (caso o botão seja um link, por exemplo)
-  event.preventDefault();
+  event.preventDefault(); // Evita comportamento padrão do botão
 
-  // Obtém os valores dos campos de entrada: código, nome, valor e imagem
+  // Obtém os valores dos campos de entrada
   const id = selectorTag('#code').value.trim();
-  const name = selectorTag('#name').value.trim();
-  const value = parseFloat(selectorTag('#value').value);
-  const image = selectorTag('#image').value.trim();
+  const name = selectorTag('#name-update').value.trim();
+  const value = parseFloat(selectorTag('#value-update').value);  // Converte para número
+  const image = selectorTag('#image-update').value.trim();
 
-  // Exibe no console os dados que serão enviados para a atualização
-  console.log(`Dados para Atualização: Name:${name}, Value:${value}, Image:${image}`);
+  // Log para depuração
+  console.log(`Dados para Atualização: ID:${id}, Name:${name}, Value:${value}, Image:${image}`);
 
-  // Verifica se o ID fornecido é válido (não vazio e com 36 caracteres para um UUID)
-  if (!id || id.length !== 36 ) {
-    console.warn('ID inválido para atualização, verifique o código!');
-    return;  // Interrompe a execução caso o ID seja inválido
+  // Verifica se o ID é válido
+  const isValidUUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(id);
+  if (!id || !isValidUUID) {
+    console.warn('ID inválido para atualização. Certifique-se de que é um UUID válido.');
+    alert('ID inválido! Por favor, verifique o código.');
+    return;
   }
 
-  // Verifica se todos os dados obrigatórios (nome, valor e imagem) foram fornecidos
-  if (name && value && image) {
+  // Verifica se os dados obrigatórios estão preenchidos
+  if (!name || isNaN(value) || value <= 0 || !image) {
+    console.warn('Preencha todos os campos corretamente antes de atualizar!');
+    alert('Preencha todos os campos corretamente!');
+    return;
+  }
+
+  try {
     // Chama a função para atualizar o produto
     await updateProduct(id, { name, value, image });
+    alert('Produto atualizado com sucesso!');
 
     // Limpa os campos após o envio do produto
     selectorTag('#code').value = '';
-    selectorTag('#name').value = '';  
-    selectorTag('#value').value = ''; 
-    selectorTag('#image').value = ''; 
-
-  } else {
-    // Exibe um aviso no console caso algum campo obrigatório esteja vazio
-    console.warn('Prencha todos os dados para atualizar corretamente!');
+    selectorTag('#name').value = '';
+    selectorTag('#value').value = '';
+    selectorTag('#image').value = '';
+  } catch (error) {
+    alert('Erro ao atualizar o produto. Tente novamente mais tarde.');
+    console.error(error);
   }
 });
+
 
 
 /*==================== DELETE: EXCLUIR PRODUTO ====================*/
@@ -445,11 +426,12 @@ async function deleteProduct(id) {
 
 
 // Botão de deletar produto (DELETE)
-const deleteButton = document.querySelector('#delete-data');
+const deleteButton = selectorTag('#delete-data');
+
 deleteButton.addEventListener('click', async (event) => {
   event.preventDefault();
 
-  const id = document.querySelector('#code').value.trim();
+  const id = selectorTag('#code').value.trim();
 
   console.log(`Tentativa de exclusão do produto com ID: ${id}`);
 
@@ -468,3 +450,19 @@ deleteButton.addEventListener('click', async (event) => {
 
 /*==================== INICIALIZAÇÃO ====================*/
 getProducts();
+
+/*==================== SCROLL BOTÂO PESQUISAR ATÈ MODAL  ====================*/
+
+selectorTag('.search-button').addEventListener('click', (event) => {
+  event.preventDefault(); // Impede o comportamento padrão do link
+
+  const modalElement = selectorTag('.modal-content');
+  if (modalElement) {
+    modalElement.scrollIntoView({
+      behavior: 'smooth', // Rola suavemente
+      block: 'start', // Alinha ao topo do elemento
+    });
+  } else {
+    console.warn('Elemento com a classe ".modal" não encontrado.');
+  }
+});
