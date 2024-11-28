@@ -5,8 +5,8 @@
 
 
 ## Descrição
-- Games Store - Um Mergulho na Nostalgia dos Consoles Retrô 🎮
-🚀 Gerenciamento de Produtos via API Personalizada 
+- **Games Store** - Um Mergulho na Nostalgia dos Consoles Retrô 🎮
+- 🚀 **Gerenciamento de Produtos via API Personalizada** 
 
 - O projeto Games Store é um site interativo e envolvente que convida você a explorar o design moderno de consoles retrô, apresentando modelos icônicos como Sega, Nintendo e Sony. Desenvolvido com tecnologias web de ponta, o site proporciona uma experiência fluida e intuitiva.
 
